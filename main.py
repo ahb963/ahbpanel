@@ -2197,6 +2197,30 @@ html{scroll-behavior:smooth} body{overflow-x:hidden} button,input,select,textare
 @media(max-width:640px){body{padding:10px!important;font-size:14px}.grid,.stats-grid,.cards-grid,.form-grid{grid-template-columns:1fr!important}.card,.panel,.section,.modal{border-radius:18px!important}.modal{max-height:92vh;overflow:auto;padding:14px!important}.header,.topbar,.toolbar,.actions{flex-wrap:wrap!important}.header>* ,.topbar>*{max-width:100%}.btn,button{min-height:44px}.field input,.field select,.field textarea,input,select,textarea{min-height:44px;font-size:16px;max-width:100%}table{display:block;overflow-x:auto;white-space:nowrap}.link-row,.config-row{flex-direction:column!important;align-items:stretch!important}.brand-name{font-size:15px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
+
+/* ============================================================
+   AHB DASHBOARD — pixel-oriented reference layout
+   ============================================================ */
+.sidebar{left:0!important;right:auto!important;border-left:0!important;border-right:1px solid var(--card-b)!important}
+.sb-toggle{right:-15px!important;left:auto!important}
+.main{margin-left:var(--sb)!important;margin-right:0!important;padding:18px 18px 45px!important;max-width:none!important}
+.main.expanded{margin-left:var(--sb-c)!important;margin-right:0!important}
+.ahb-dashboard{display:grid;grid-template-columns:minmax(0,1fr) 285px;gap:16px;direction:ltr}
+.ahb-maincol,.ahb-rightcol{min-width:0;direction:rtl}
+.ahb-rightcol{display:flex;flex-direction:column;gap:14px}
+.ahb-hero{height:126px;border-radius:17px;padding:22px 25px;display:flex;align-items:center;justify-content:space-between;gap:18px;overflow:hidden;position:relative;background:radial-gradient(circle at 75% 20%,rgba(124,58,237,.34),transparent 34%),linear-gradient(120deg,#071b38,#0c1535 55%,#241044);border:1px solid #198bff;box-shadow:0 0 26px rgba(0,132,255,.18),inset 0 0 50px rgba(0,123,255,.07)}
+.ahb-hero:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(125deg,transparent 0 34px,rgba(96,165,250,.045) 35px 36px);pointer-events:none}
+.ahb-hero-copy{position:relative;z-index:1}.ahb-live{font-size:9px;color:#60a5fa;margin-bottom:6px}.ahb-live i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;margin-left:5px}.ahb-live span{opacity:.45;margin:0 5px}.ahb-hero h1{font-size:22px;margin:0 0 3px;font-weight:900}.ahb-hero p{font-size:11px;color:#a7b5d2}.ahb-server-card{position:relative;z-index:1;width:185px;padding:14px 16px;border-radius:15px;background:rgba(1,11,28,.62);border:1px solid rgba(59,130,246,.28);font-size:10px;color:#aab8d0}.ahb-server-card strong{display:block;margin-top:7px;color:#22c55e;font-size:14px}.ahb-server-card strong i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;margin-left:6px}.ahb-server-card small{display:block;margin-top:5px;color:#64748b;font-size:8px}
+.ahb-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0}.ahb-metric{min-height:105px;padding:15px;border-radius:14px;border:1px solid rgba(59,130,246,.27);background:linear-gradient(145deg,#071b38,#071126);display:flex;align-items:center;gap:12px}.ahb-metric .mi{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;font-size:26px;flex:0 0 auto;background:rgba(59,130,246,.12)}.ahb-metric .blue{color:#60a5fa}.ahb-metric .purple{color:#a78bfa}.ahb-metric .cyan{color:#22d3ee}.ahb-metric .violet{color:#c084fc}.ahb-metric small{display:block;color:#b9c4d9;font-size:10px}.ahb-metric b{display:block;font-size:23px;margin:4px 0}.ahb-metric em{font-style:normal;color:#22c55e;font-size:8px}
+.ahb-middle{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(240px,.75fr);gap:14px;margin-bottom:14px}.ahb-panel,.ahb-right-panel{border:1px solid rgba(59,130,246,.22);background:linear-gradient(145deg,#061832,#060d1e);border-radius:15px;box-shadow:0 8px 30px rgba(0,0,0,.22);overflow:hidden}.ahb-panel-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;font-size:12px}.ahb-panel-head select,.ahb-panel-head input{background:#07182f;color:#9eb0cd;border:1px solid #17426f;border-radius:10px;padding:7px 10px;font-family:inherit;font-size:9px}.ahb-chart-wrap{height:235px;position:relative;padding:5px 18px 25px 46px}.ahb-ylabels{position:absolute;left:10px;top:15px;bottom:32px;display:flex;flex-direction:column;justify-content:space-between;color:#72839f;font-size:8px}.ahb-chart-svg{width:100%;height:190px;overflow:visible}.gridlines path{stroke:rgba(96,165,250,.11);stroke-width:1}.ahb-area{fill:url(#ahbFill)}.ahb-line{fill:none;stroke:url(#ahbLine);stroke-width:4;filter:drop-shadow(0 0 7px rgba(99,102,241,.45))}.points circle{fill:#a78bfa;stroke:#fff;stroke-width:1.2}.ahb-xlabels{position:absolute;left:48px;right:18px;bottom:8px;display:flex;justify-content:space-between;color:#72839f;font-size:8px}
+.ahb-usage-panel{padding-bottom:14px}.ahb-donut{width:135px;height:135px;border-radius:50%;margin:12px auto 10px;background:conic-gradient(#14e6c0 0 68%,#2563eb 68% 72%,#182d4d 72% 100%);display:grid;place-items:center;box-shadow:0 0 24px rgba(20,230,192,.12)}.ahb-donut:before{content:'';position:absolute}.ahb-donut>div{width:102px;height:102px;border-radius:50%;background:#07152b;display:grid;place-content:center;text-align:center}.ahb-donut strong{font-size:25px}.ahb-donut span{font-size:9px;color:#8191aa}.ahb-legend{padding:0 18px}.ahb-legend div{display:flex;align-items:center;gap:7px;margin:10px 0;color:#9eacc4;font-size:9px}.ahb-legend i{width:9px;height:9px;border-radius:50%;display:block}.ahb-legend .used{background:#a855f7}.ahb-legend .remain{background:#14e6c0}.ahb-legend .total{background:#64748b}.ahb-legend b{margin-right:auto;color:#e5edf9;font-size:10px}
+.ahb-config-panel{margin-bottom:14px}.ahb-config-panel .ahb-panel-head input{width:330px}.ahb-table-wrap{overflow:auto}.ahb-table{width:100%;border-collapse:collapse;font-size:9px}.ahb-table th{background:#081a33;color:#9baac2;font-weight:700;padding:9px 8px;border-bottom:1px solid #16385f;white-space:nowrap}.ahb-table td{padding:9px 8px;border-bottom:1px solid rgba(96,165,250,.07);white-space:nowrap;color:#d9e2f1}.ahb-table tr:hover{background:rgba(59,130,246,.05)}.ahb-status{display:inline-block;padding:4px 11px;border-radius:10px;background:rgba(34,197,94,.17);color:#34d399}.ahb-status.off{background:rgba(239,68,68,.14);color:#f87171}.ahb-op{width:25px;height:25px;border-radius:7px;border:1px solid #1b5c9a;background:#071a35;color:#7db9ff;cursor:pointer;margin:0 2px}.ahb-empty{text-align:center!important;color:#6d7d98!important;padding:24px!important}
+.ahb-bottom-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.ahb-bottom-actions button{min-height:64px;border-radius:13px;border:1px solid rgba(59,130,246,.22);background:linear-gradient(145deg,#071b38,#071126);color:#dce8fa;font-family:inherit;cursor:pointer;text-align:right;padding:10px 13px;display:grid;grid-template-columns:35px 1fr;column-gap:9px;align-items:center}.ahb-bottom-actions span{grid-row:1/3;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#122c50;color:#a78bfa;font-size:17px}.ahb-bottom-actions b{font-size:9px}.ahb-bottom-actions small{font-size:7px;color:#72839f}
+.ahb-right-panel{padding:13px}.ahb-right-panel h3{font-size:11px;margin:0 0 10px;display:flex;justify-content:space-between;color:#dbe7fa}.ahb-right-panel h3 span{color:#60a5fa}.ahb-right-panel>button{width:100%;height:39px;margin:4px 0;border:1px solid #15518d;border-radius:9px;background:linear-gradient(180deg,#09234a,#071a34);color:#d9e6f8;font-family:inherit;font-size:10px;text-align:right;padding:0 11px;cursor:pointer}.ahb-right-panel>button b{float:left;color:#60a5fa;font-size:17px}.sys-row{display:flex;align-items:center;gap:7px;padding:8px 5px;border-bottom:1px solid rgba(96,165,250,.06);font-size:9px}.sys-row i{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e}.sys-row span{color:#b9c5d9}.sys-row b{margin-right:auto;color:#34d399}.ahb-right-panel #dashActivity{max-height:230px;overflow:auto}.ahb-right-panel .activity-item{padding:9px 3px;border-bottom:1px solid rgba(96,165,250,.06)}
+@media(max-width:1100px){.ahb-dashboard{grid-template-columns:1fr}.ahb-rightcol{display:grid;grid-template-columns:repeat(3,1fr)}.ahb-metrics{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.sidebar{left:0!important;right:auto!important;transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main,.main.expanded{margin-left:0!important;margin-right:0!important;padding-top:72px!important}.ahb-rightcol{display:flex}.ahb-middle{grid-template-columns:1fr}.ahb-bottom-actions{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.ahb-hero{height:auto;min-height:150px;align-items:flex-start}.ahb-server-card{width:150px}.ahb-metrics{grid-template-columns:1fr 1fr}.ahb-metric{min-height:92px;padding:10px}.ahb-metric .mi{width:36px;height:36px;font-size:20px}.ahb-metric b{font-size:18px}.ahb-bottom-actions{grid-template-columns:1fr}.ahb-config-panel .ahb-panel-head{align-items:flex-start;flex-direction:column;gap:8px}.ahb-config-panel .ahb-panel-head input{width:100%}}
+
 /* Toggle switch */
 .switch{position:relative;display:inline-block;width:42px;height:24px;vertical-align:middle}
 .switch input{opacity:0;width:0;height:0}
@@ -6423,7 +6447,7 @@ tr:hover td{background:var(--hover)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
       <span class="nav-label" data-i18n="nav_settings">تنظیمـات</span>
     </button>
-    <button class="nav-item" data-page="support" data-perm="support">
+    <button class="nav-item" data-page="support" data-perm="support" style="display:none">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
       <span class="nav-label" data-i18n="nav_support">پشتیبانـی</span>
     </button>
@@ -6451,82 +6475,67 @@ tr:hover td{background:var(--hover)}
 <main class="main" id="main">
 
 <section class="page on" id="page-dash">
-  <div class="action-hero">
-    <div class="action-hero-content">
-      <div>
-        <div style="display:inline-flex;align-items:center;gap:8px;font-size:10px;color:#93c5fd;margin-bottom:9px"><span class="status-live"><i></i> سیستم فعال است</span><span style="opacity:.45">•</span><span>AHB PANEL v14.2.0</span></div>
+<div class="ahb-dashboard">
+  <div class="ahb-maincol">
+    <div class="ahb-hero">
+      <div class="ahb-hero-copy">
+        <div class="ahb-live"><i></i> سیستم فعال است <span>•</span> AHB PANEL v14.2.0</div>
         <h1>به پنل مدیریت AHB خوش آمدید</h1>
-        <p>مدیریت حرفه‌ای کانفیگ‌ها، سابسکریپشن‌ها، سرورها و وضعیت شبکه — بدون بخش فروش.</p>
+        <p>مدیریت آسان، سریع و حرفه‌ای کانفیگ‌ها و سرویس‌های شبکه</p>
       </div>
-      <div class="hero-status">
-        <div class="hero-status-top"><span>وضعیت سرویس</span><span id="dashUpdateTime">—</span></div>
-        <div class="status-live" style="font-size:15px"><i></i><span id="dashHealthText">آنلاین</span></div>
-        <div style="margin-top:9px;font-size:9px;color:var(--t3)" id="dashUptimeText">آپتایم: —</div>
-      </div>
+      <div class="ahb-server-card"><div>وضعیت سرور</div><strong><i></i><span id="dashHealthText">آنلاین</span></strong><small id="dashUptimeText">آپتایم: —</small></div>
     </div>
-  </div>
 
-  <div class="action-metrics">
-    <div class="action-metric"><div class="am-label"><span style="color:#60a5fa">●</span> کانفیگ‌های فعال</div><div class="am-value" id="mLinks">—</div><div class="am-note" id="dashActiveNote">فعال</div></div>
-    <div class="action-metric"><div class="am-label"><span style="color:#22d3ee">●</span> اتصالات هم‌زمان</div><div class="am-value" id="mConns">—</div><div class="am-note">اتصال فعال فعلی</div></div>
-    <div class="action-metric"><div class="am-label"><span style="color:#a78bfa">●</span> مصرف ترافیک</div><div class="am-value" id="mTraffic">—</div><div class="am-note">مجموع مصرف ثبت‌شده</div></div>
-    <div class="action-metric"><div class="am-label"><span style="color:#34d399">●</span> آپتایم سرور</div><div class="am-value" id="mUptime" style="font-size:17px">—</div><div class="am-note">وضعیت اجرای پنل</div></div>
-  </div>
-
-  <div class="action-grid">
-    <div class="card action-chart">
-      <div class="action-chart-head"><div class="action-chart-title">مصرف و فعالیت اخیر</div><div class="chart-legend" id="lastUpd">در حال بارگذاری...</div></div>
-      <div class="chart-area" id="dashChartBars">
-        <div class="chart-col"><div class="chart-bar" style="height:35%"></div><span>—</span></div>
-        <div class="chart-col"><div class="chart-bar" style="height:50%"></div><span>—</span></div>
-        <div class="chart-col"><div class="chart-bar" style="height:42%"></div><span>—</span></div>
-        <div class="chart-col"><div class="chart-bar" style="height:68%"></div><span>—</span></div>
-        <div class="chart-col"><div class="chart-bar" style="height:55%"></div><span>—</span></div>
-        <div class="chart-col"><div class="chart-bar" style="height:76%"></div><span>—</span></div>
-        <div class="chart-col"><div class="chart-bar" style="height:62%"></div><span>—</span></div>
-      </div>
+    <div class="ahb-metrics">
+      <div class="ahb-metric"><span class="mi blue">●</span><div><small>کل کاربران</small><b id="dashUsers">—</b><em>کاربران ثبت‌شده</em></div></div>
+      <div class="ahb-metric"><span class="mi purple">●</span><div><small>کانفیگ‌های فعال</small><b id="mLinks">—</b><em id="dashActiveNote">فعال</em></div></div>
+      <div class="ahb-metric"><span class="mi cyan">●</span><div><small>کل ترافیک</small><b id="mTraffic">—</b><em>مجموع مصرف ثبت‌شده</em></div></div>
+      <div class="ahb-metric"><span class="mi violet">●</span><div><small>اتصالات فعال</small><b id="mConns">—</b><em>اتصال هم‌زمان</em></div></div>
     </div>
-    <div class="card action-health">
-      <div class="card-title">وضعیت سیستم</div>
-      <div class="health-list">
-        <div class="health-row"><div class="left"><i class="health-dot"></i> سرور اصلی</div><b class="health-value">فعال</b></div>
-        <div class="health-row"><div class="left"><i class="health-dot"></i> دیتای پنل</div><b class="health-value">متصل</b></div>
-        <div class="health-row"><div class="left"><i class="health-dot"></i> سرویس کانفیگ</div><b class="health-value" id="dashConfigState">فعال</b></div>
-        <div class="health-row"><div class="left"><i class="health-dot"></i> ربات تلگرام</div><b class="health-value">تنظیم‌شده</b></div>
-        <div class="health-row"><div class="left"><i class="health-dot"></i> فایل سیستم</div><b class="health-value">سالم</b></div>
-      </div>
-    </div>
-  </div>
 
-  <div class="action-bottom">
-    <div class="card">
-      <div class="card-title">عملیات سریع</div>
-      <div class="quick-grid">
-        <button class="quick-action" onclick="goPage('create')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span><span><b class="qa-title">ساخت کانفیگ</b><small class="qa-desc">ساخت دستی با حجم، زمان، سرعت و IP</small></span></button>
-        <button class="quick-action" onclick="goPage('configs')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span><b class="qa-title">مدیریت کانفیگ‌ها</b><small class="qa-desc">ویرایش، حذف، فعال‌سازی و لینک ساب</small></span></button>
-        <button class="quick-action" onclick="goPage('groups')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M6 3h12v18H6z"/></svg></span><span><b class="qa-title">مدیریت گروه‌ها</b><small class="qa-desc">دسته‌بندی و ساخت ساب‌های گروهی</small></span></button>
-        <button class="quick-action" onclick="goPage('stats')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-6"/></svg></span><span><b class="qa-title">آمار و ترافیک</b><small class="qa-desc">اتصالات، مصرف و وضعیت سرویس‌ها</small></span></button>
-        <button class="quick-action" onclick="goPage('telegram')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span><span><b class="qa-title">ربات تلگرام</b><small class="qa-desc">توکن، وب‌هوک و تنظیمات ربات</small></span></button>
-        <button class="quick-action" onclick="goPage('settings')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-2.6V20a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H6v-2.6h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.6v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v2.6h-.2a1.7 1.7 0 0 0-1.6 1Z"/></svg></span><span><b class="qa-title">تنظیمات و امنیت</b><small class="qa-desc">رمز، ادمین‌ها و پیکربندی پنل</small></span></button>
+    <div class="ahb-middle">
+      <div class="ahb-panel ahb-chart-panel">
+        <div class="ahb-panel-head"><b>نمودار ترافیک مصرفی</b><select id="dashRange"><option>۷ روز گذشته</option><option>۳۰ روز گذشته</option></select></div>
+        <div class="ahb-chart-wrap">
+          <div class="ahb-ylabels"><span>20 GB</span><span>15</span><span>10</span><span>5</span><span>0</span></div>
+          <svg viewBox="0 0 700 210" preserveAspectRatio="none" class="ahb-chart-svg"><defs><linearGradient id="ahbFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7c3aed" stop-opacity=".55"/><stop offset="1" stop-color="#2563eb" stop-opacity=".03"/></linearGradient><linearGradient id="ahbLine" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#22d3ee"/><stop offset=".55" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs><g class="gridlines"><path d="M0 20H700M0 62H700M0 104H700M0 146H700M0 188H700"/><path d="M80 0V210M180 0V210M280 0V210M380 0V210M480 0V210M580 0V210M680 0V210"/></g><path class="ahb-area" d="M0 160 C65 145 105 155 150 148 S230 155 270 145 S350 112 390 120 S460 132 500 105 S565 72 610 90 S660 76 700 65 L700 210 L0 210Z"/><path class="ahb-line" d="M0 160 C65 145 105 155 150 148 S230 155 270 145 S350 112 390 120 S460 132 500 105 S565 72 610 90 S660 76 700 65"/><g class="points"><circle cx="0" cy="160" r="4"/><circle cx="150" cy="148" r="4"/><circle cx="270" cy="145" r="4"/><circle cx="390" cy="120" r="4"/><circle cx="500" cy="105" r="4"/><circle cx="610" cy="90" r="4"/><circle cx="700" cy="65" r="4"/></g></svg>
+          <div class="ahb-xlabels"><span>مهر ۱۹</span><span>مهر ۲۰</span><span>مهر ۲۱</span><span>مهر ۲۲</span><span>مهر ۲۳</span><span>مهر ۲۴</span><span>مهر ۲۵</span></div>
+        </div>
+      </div>
+      <div class="ahb-panel ahb-usage-panel">
+        <div class="ahb-panel-head"><b>میزان مصرف کل</b></div>
+        <div class="ahb-donut"><div><strong id="dashUsagePct">68%</strong><span>مصرف شده</span></div></div>
+        <div class="ahb-legend"><div><i class="used"></i>مصرف شده <b id="dashUsedLegend">—</b></div><div><i class="remain"></i>باقی‌مانده <b id="dashRemainLegend">—</b></div><div><i class="total"></i>کل حجم <b id="dashTotalLegend">—</b></div></div>
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-title">وضعیت کانفیگ‌ها</div>
-      <div class="config-health">
-        <div class="chip-stat"><span>کل کانفیگ</span><b id="dashTotalConfigs">—</b></div>
-        <div class="chip-stat"><span>فعال</span><b id="dashActiveConfigs">—</b></div>
-        <div class="chip-stat"><span>منقضی</span><b id="dashExpiredConfigs">—</b></div>
-        <div class="chip-stat"><span>بدون محدودیت</span><b id="dashUnlimitedConfigs">—</b></div>
-      </div>
-      <div style="margin-top:15px;font-size:10px;color:var(--t3);line-height:1.8"></div>
+    <div class="ahb-panel ahb-config-panel">
+      <div class="ahb-panel-head"><b>مدیریت کانفیگ‌ها</b><input id="dashConfigSearch" placeholder="جستجو در کانفیگ‌ها..." oninput="renderDashConfigs()"></div>
+      <div class="ahb-table-wrap"><table class="ahb-table"><thead><tr><th>#</th><th>نام کانفیگ</th><th>پروتکل</th><th>تاریخ انقضا</th><th>حجم مصرف</th><th>حجم مجاز</th><th>وضعیت</th><th>عملیات</th></tr></thead><tbody id="dashConfigTable"><tr><td colspan="8" class="ahb-empty">در حال بارگذاری...</td></tr></tbody></table></div>
+    </div>
+
+    <div class="ahb-bottom-actions">
+      <button onclick="goPage('settings')"><span>⚙</span><b>تنظیمات کلی</b><small>پیکربندی پنل و امنیت</small></button>
+      <button onclick="goPage('groups')"><span>♟</span><b>مدیریت گروه‌ها</b><small>ساخت و ویرایش گروه‌ها</small></button>
+      <button onclick="goPage('stats')"><span>▥</span><b>گزارش ترافیک</b><small>مشاهده آمار و گزارش‌ها</small></button>
+      <button onclick="goPage('logs')"><span>▤</span><b>لاگ کاربران</b><small>فعالیت‌های کاربران</small></button>
     </div>
   </div>
 
-  <div class="card" style="margin-top:14px">
-    <div class="card-title">آخرین فعالیت‌های کانفیگ</div>
-    <div class="activity-list" id="dashActivity"><div style="color:var(--t3);font-size:11px;padding:10px 0">در حال بارگذاری...</div></div>
-  </div>
+  <aside class="ahb-rightcol">
+    <div class="ahb-right-panel">
+      <h3>عملیات سریع <span>ϟ</span></h3>
+      <button onclick="goPage('configs')">▤ مدیریت کانفیگ‌ها <b>›</b></button>
+      <button onclick="goPage('create')">＋ ایجاد کانفیگ جدید <b>›</b></button>
+      <button onclick="goPage('admins')">♙ مدیریت کاربران <b>›</b></button>
+      <button onclick="goPage('groups')">↗ ساخت سابسکریپشن <b>›</b></button>
+      <button onclick="goPage('telegram')">➤ تنظیمات ربات تلگرام <b>›</b></button>
+      <button onclick="downloadBackup('users')">▣ پشتیبان‌گیری از دیتابیس <b>›</b></button>
+    </div>
+    <div class="ahb-right-panel"><h3>وضعیت سیستم <span>▤</span></h3><div class="sys-row"><i></i><span>سرور اصلی</span><b>فعال</b></div><div class="sys-row"><i></i><span>دیتابیس</span><b>متصل</b></div><div class="sys-row"><i></i><span>ربات تلگرام</span><b>فعال</b></div><div class="sys-row"><i></i><span>فایل سیستم</span><b>سالم</b></div></div>
+    <div class="ahb-right-panel"><h3>آخرین فعالیت‌ها <span>◷</span></h3><div id="dashActivity"><div class="ahb-empty">در حال بارگذاری...</div></div></div>
+  </aside>
+</div>
 </section>
 
 <section class="page" id="page-configs">
@@ -6963,6 +6972,7 @@ async function refreshAll(){
     }
   }catch(e){}
     __allLinks=arr;
+  renderDashConfigs();
   softUpdateLinks(arr);
   document.getElementById('panelInfo').innerHTML=lang==='fa'
     ?`کل کانفیگ: <b>${arr.length}</b> · فعال: <b>${active}</b> · مصرف: <b>${fmtB(used)}</b> · بازه: <b>${statRange}</b>`
@@ -7030,6 +7040,22 @@ function patchLinkRow(tr, l){
     if(sw.checked!==on) sw.checked=on;
   }
 }
+function renderDashConfigs(){
+  const tb=document.getElementById('dashConfigTable'); if(!tb) return;
+  const q=(document.getElementById('dashConfigSearch')?.value||'').trim().toLowerCase();
+  const arr=(typeof __allLinks!=='undefined'?__allLinks:[]).filter(l=>!q||String(l.label||l.name||'').toLowerCase().includes(q)||String(l.protocol||'').toLowerCase().includes(q));
+  if(!arr.length){tb.innerHTML='<tr><td colspan="8" class="ahb-empty">کانفیگی برای نمایش وجود ندارد</td></tr>';return}
+  window.__linksMap=window.__linksMap||{};
+  tb.innerHTML=arr.slice(0,12).map((l,i)=>{
+    const uid=String(l.uuid||l.id||''); window.__linksMap[uid]=l;
+    const name=esc(l.label||l.name||uid.slice(0,8)); const proto=esc(l.protocol||'VLESS');
+    const used=fmtB(l.used_bytes); const lim=Number(l.limit_bytes||0)?fmtB(l.limit_bytes):'∞';
+    let exp='—'; if(l.expires_at){try{exp=new Date(l.expires_at).toLocaleDateString('fa-IR')}catch(e){}}
+    const on=l.active!==false&&!l.expired;
+    return `<tr><td>${i+1}</td><td><b>${name}</b></td><td>${proto}</td><td>${exp}</td><td>${used}</td><td>${lim}</td><td><span class="ahb-status ${on?'':'off'}">${on?'فعال':'منقضی'}</span></td><td><button class="ahb-op" onclick="goPage('configs')">✎</button><button class="ahb-op" onclick="copyLinkById('${esc(uid)}')">⧉</button><button class="ahb-op" onclick="deleteLink('${esc(uid)}')">⌫</button></td></tr>`;
+  }).join('');
+}
+
 function renderLinks(arr){
   const tb=document.getElementById('linksTable');
   if(!arr.length){tb.innerHTML=`<tr><td colspan="7" style="text-align:center;color:var(--t3);padding:28px">${lang==='fa'?'کانفیگی نیست':'No configs'}</td></tr>`;updateBulkBar();return}
