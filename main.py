@@ -1,5 +1,5 @@
 # ============================================================
-# ahbpanel 14.2.0
+# ahbpanel 14.3.0
 # Railway Ready
 # Created By Ahb
 # ============================================================
@@ -38,7 +38,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # ============================================================
 
 APP_NAME = "ahbpanel"
-APP_VERSION = "14.2.0"
+APP_VERSION = "14.3.0"
 
 SUPPORT_USERNAME = "@ahb_panel"
 SUPPORT_URL = "https://t.me/ahbpanel"
@@ -2181,7 +2181,7 @@ AHB Panel
 </div>
 
 <div class="version">
-14.2.0
+14.3.0
 </div>
 </div>
 
@@ -2229,7 +2229,7 @@ class="btn secondary"
 <div class="footer">
 
 <span>
-AHB Panel · 14.2.0
+AHB Panel · 14.3.0
 </span>
 
 <a
@@ -2338,6 +2338,28 @@ button:disabled{opacity:.5;cursor:not-allowed}
 .warn{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.28);border-radius:12px;padding:12px;font-size:12px;line-height:1.85;color:#fbbf24;margin-bottom:16px}
 .warn code{background:rgba(0,0,0,.35);padding:2px 6px;border-radius:6px;font-family:ui-monospace,monospace;color:#93c5fd}
 .hidden{display:none}
+
+body{background:#05030d;position:relative;overflow:hidden}
+body::before{content:'';position:fixed;inset:-25%;z-index:0;pointer-events:none;
+  background:radial-gradient(38% 34% at 80% 15%,rgba(0,229,255,.32),transparent 70%),
+  radial-gradient(34% 32% at 15% 85%,rgba(255,43,214,.26),transparent 70%),
+  radial-gradient(40% 36% at 55% 50%,rgba(138,92,255,.2),transparent 72%);
+  animation:aur 24s ease-in-out infinite alternate}
+@keyframes aur{to{transform:translate3d(-4%,3%,0) scale(1.08)}}
+.card{position:relative;z-index:1;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
+  backdrop-filter:blur(26px) saturate(170%);-webkit-backdrop-filter:blur(26px) saturate(170%);
+  border:1px solid rgba(0,229,255,.28);
+  box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(138,92,255,.2),inset 0 1px 0 rgba(255,255,255,.14)}
+.card::before{content:'';position:absolute;top:0;right:12%;left:12%;height:2px;
+  background:linear-gradient(90deg,transparent,#00e5ff,#ff2bd6,transparent);box-shadow:0 0 18px #00e5ff}
+h1{text-shadow:0 0 20px rgba(0,229,255,.55)}
+input{background:rgba(5,3,20,.6)}
+input:focus{border-color:#00e5ff;box-shadow:0 0 0 3px rgba(0,229,255,.14),0 0 24px rgba(0,229,255,.22)}
+button{background:linear-gradient(120deg,#0086e8,#6a45ff 55%,#d11cb8);background-size:180% 100%;
+  box-shadow:0 0 22px rgba(0,134,232,.5),0 8px 26px rgba(106,69,255,.38);transition:background-position .5s,box-shadow .2s}
+button:hover{background:linear-gradient(120deg,#0086e8,#6a45ff 55%,#d11cb8);background-position:100% 0;
+  box-shadow:0 0 30px rgba(0,229,255,.65),0 8px 30px rgba(209,28,184,.45)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
 </head>
 <body>
@@ -4723,7 +4745,7 @@ AHB Panel
 </h1>
 
 <div class="version">
-14.2.0
+14.3.0
 </div>
 
 <div class="text">
@@ -6127,9 +6149,9 @@ DASHBOARD_HTML = r"""
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>AHBPanel 14.2.0</title>
+<title>AHBPanel 14.3.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#06060b;--bg2:#0b0b12;--bg3:#12121c;--card:rgba(18,18,28,.92);--card-b:rgba(255,255,255,.08);
@@ -6300,6 +6322,319 @@ tr:hover td{background:var(--hover)}
 .conn-badge.red{background:rgba(239,68,68,.18);color:#f87171}
 .spin{width:36px;height:36px;border:3px solid var(--card-b);border-top-color:var(--accent);border-radius:50%;margin:0 auto;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* ================= NEON GLASS · ACTION THEME ================= */
+:root{
+  --bg:#05030d;--bg2:rgba(16,10,38,.58);--bg3:rgba(255,255,255,.055);
+  --card:rgba(255,255,255,.045);--card-b:rgba(255,255,255,.11);
+  --accent:#00e5ff;--accent2:#6df3ff;--purple:#b26bff;--pink:#ff2bd6;
+  --green:#2dff9a;--red:#ff4d6d;--amber:#ffc23d;
+  --t1:#f4f7ff;--t2:rgba(232,238,255,.78);--t3:rgba(206,216,255,.5);
+  --shadow:0 12px 40px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.12);
+  --input-bg:rgba(5,3,20,.6);--hover:rgba(0,229,255,.1);
+  --glow:0 0 40px rgba(0,229,255,.2);--glass:blur(20px) saturate(170%);
+  --neon:linear-gradient(120deg,#00e5ff,#8a5cff 50%,#ff2bd6);
+  --radius:20px;
+}
+html.light{
+  --bg:#e8ebff;--bg2:rgba(255,255,255,.62);--bg3:rgba(255,255,255,.58);
+  --card:rgba(255,255,255,.55);--card-b:rgba(80,70,180,.16);
+  --accent:#0891b2;--accent2:#0e9fc0;--purple:#7c3aed;--pink:#db2777;
+  --green:#059669;--red:#e11d48;--amber:#d97706;
+  --t1:#14123a;--t2:#3d3a72;--t3:#7a77b0;
+  --shadow:0 12px 32px rgba(80,70,180,.16),inset 0 1px 0 rgba(255,255,255,.9);
+  --input-bg:rgba(255,255,255,.75);--hover:rgba(8,145,178,.1);
+  --glow:0 0 32px rgba(8,145,178,.15);
+}
+::selection{background:rgba(0,229,255,.32);color:#fff}
+:focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+
+/* ---- background: moving aurora + neon grid ---- */
+body::before,html.light body::before{
+  inset:-25%;
+  background:
+    radial-gradient(38% 34% at 82% 12%, rgba(0,229,255,.30), transparent 70%),
+    radial-gradient(34% 32% at 12% 86%, rgba(255,43,214,.24), transparent 70%),
+    radial-gradient(40% 36% at 55% 50%, rgba(138,92,255,.20), transparent 72%);
+  animation:auroraShift 26s ease-in-out infinite alternate;
+  will-change:transform;
+}
+html.light body::before{opacity:.55}
+@keyframes auroraShift{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  50%{transform:translate3d(-4%,3%,0) scale(1.08)}
+  100%{transform:translate3d(3%,-3%,0) scale(1.03)}
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(0,229,255,.07) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(0,229,255,.07) 1px,transparent 1px);
+  background-size:48px 48px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 78%);
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 0%,transparent 78%);
+  animation:gridDrift 20s linear infinite;
+}
+html.light body::after{opacity:.5}
+@keyframes gridDrift{to{background-position:0 48px,48px 0}}
+
+/* ---- scrollbar ---- */
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--accent),var(--purple));border-radius:99px}
+::-webkit-scrollbar-track{background:transparent}
+
+/* ---- sidebar ---- */
+.sidebar{
+  background:linear-gradient(200deg,rgba(26,16,60,.62),rgba(8,5,22,.7));
+  border-left:1px solid rgba(0,229,255,.22);
+  box-shadow:-14px 0 60px rgba(0,229,255,.07),inset 1px 0 0 rgba(255,255,255,.08);
+}
+html.light .sidebar{background:linear-gradient(200deg,rgba(255,255,255,.7),rgba(235,238,255,.6))}
+.sb-toggle{background:var(--neon);border:2px solid var(--bg);box-shadow:0 0 18px rgba(0,229,255,.55)}
+.sb-logo{border-bottom-color:rgba(255,255,255,.09)}
+.sb-logo-icon{
+  background:var(--neon);color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.4);
+  box-shadow:0 0 22px rgba(0,229,255,.55),0 0 44px rgba(255,43,214,.25);
+  animation:logoPulse 3.4s ease-in-out infinite;
+}
+@keyframes logoPulse{
+  50%{box-shadow:0 0 30px rgba(0,229,255,.8),0 0 60px rgba(255,43,214,.4)}
+}
+.sb-logo-name{text-shadow:0 0 14px rgba(0,229,255,.45)}
+.nav-sec{color:var(--accent2);opacity:.6}
+.nav-item{border:1px solid transparent}
+.nav-item:hover{
+  background:rgba(0,229,255,.08);color:var(--t1);
+  border-color:rgba(0,229,255,.18);transform:translateX(-3px);
+}
+.nav-item.on{
+  background:linear-gradient(270deg,rgba(0,229,255,.2),rgba(138,92,255,.08) 60%,transparent);
+  color:#fff;border-color:rgba(0,229,255,.3);
+  box-shadow:inset -3px 0 0 var(--accent),0 0 26px rgba(0,229,255,.2);
+  text-shadow:0 0 12px rgba(0,229,255,.7);
+}
+html.light .nav-item.on{color:var(--accent);text-shadow:none}
+.nav-item.on svg{color:var(--accent2);filter:drop-shadow(0 0 6px rgba(0,229,255,.9))}
+.sidebar.collapsed .nav-item.on{box-shadow:0 0 22px rgba(0,229,255,.25)}
+.sb-foot{border-top-color:rgba(255,255,255,.09)}
+.sb-foot button,.sb-foot a.btn{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+.sb-foot button:hover,.sb-foot a.btn:hover{border-color:var(--accent);box-shadow:0 0 18px rgba(0,229,255,.25)}
+.sb-foot a.danger{background:rgba(255,77,109,.1);border-color:rgba(255,77,109,.35);color:#ff7a92}
+.sb-foot a.danger:hover{box-shadow:0 0 20px rgba(255,77,109,.4);border-color:var(--red)}
+
+/* ---- mobile bar ---- */
+.mob-bar{background:rgba(10,6,28,.6);backdrop-filter:var(--glass);border-bottom:1px solid rgba(0,229,255,.22)}
+html.light .mob-bar{background:rgba(255,255,255,.7)}
+.overlay{background:rgba(3,1,12,.55);backdrop-filter:blur(4px)}
+
+/* ---- page header ---- */
+.page-title{font-weight:800;text-shadow:0 0 22px rgba(0,229,255,.35)}
+.page-title svg{color:var(--accent2);filter:drop-shadow(0 0 8px rgba(0,229,255,.8))}
+.page-sub{color:var(--t3)}
+
+/* ---- metrics: glass tiles with a charged neon edge ---- */
+.metric{
+  position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.12);
+}
+.metric::before{
+  content:'';position:absolute;top:0;right:0;left:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--mc,var(--accent)),transparent);
+  box-shadow:0 0 18px 1px var(--mc,var(--accent));
+  transform-origin:100% 50%;
+  animation:charge 1s cubic-bezier(.2,.8,.2,1) both;
+}
+.metric::after{
+  content:'';position:absolute;top:-40%;right:-20%;width:70%;height:90%;pointer-events:none;
+  background:radial-gradient(closest-side,var(--mc,var(--accent)),transparent);opacity:.12;
+}
+.metrics .metric:nth-child(1){--mc:#00e5ff}
+.metrics .metric:nth-child(2){--mc:#b26bff}
+.metrics .metric:nth-child(3){--mc:#ff2bd6}
+.metrics .metric:nth-child(4){--mc:#2dff9a}
+.metrics .metric:nth-child(2)::before{animation-delay:.1s}
+.metrics .metric:nth-child(3)::before{animation-delay:.2s}
+.metrics .metric:nth-child(4)::before{animation-delay:.3s}
+@keyframes charge{from{transform:scaleX(0);opacity:0}to{transform:scaleX(1);opacity:1}}
+.metric:hover{
+  border-color:var(--mc,var(--accent));
+  box-shadow:var(--shadow),0 0 30px -4px var(--mc,var(--accent));
+}
+.metric-label{color:var(--t3)}
+.metric-val{
+  font-family:'Orbitron','Vazirmatn',sans-serif;font-weight:700;letter-spacing:.01em;
+  color:#fff;text-shadow:0 0 18px var(--mc,var(--accent));
+}
+html.light .metric-val{color:var(--t1);text-shadow:none}
+
+/* ---- cards ---- */
+.card,.support-tile{
+  background:linear-gradient(160deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:var(--shadow);
+}
+.card-title svg{color:var(--accent2);filter:drop-shadow(0 0 6px rgba(0,229,255,.7))}
+.action-card:hover{
+  border-color:var(--accent);
+  box-shadow:var(--shadow),0 0 34px rgba(0,229,255,.28);
+  transform:translateY(-3px);
+}
+.action-card.purple:hover{border-color:var(--purple);box-shadow:var(--shadow),0 0 34px rgba(178,107,255,.32)}
+.support-tile:hover{border-color:var(--accent);box-shadow:var(--shadow),0 0 30px rgba(0,229,255,.25)}
+.support-icon{background:rgba(0,229,255,.1);box-shadow:inset 0 0 0 1px rgba(0,229,255,.25),0 0 18px rgba(0,229,255,.15)}
+
+/* ---- buttons ---- */
+.btn{
+  background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);
+  position:relative;overflow:hidden;
+}
+.btn:hover{border-color:var(--accent);color:#fff;box-shadow:0 0 18px rgba(0,229,255,.3);background:rgba(0,229,255,.09)}
+html.light .btn:hover{color:var(--accent)}
+.btn:active{transform:scale(.97)}
+.btn-p{
+  background:linear-gradient(120deg,#0086e8,#6a45ff 55%,#d11cb8);background-size:180% 100%;
+  border:none;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.35);
+  box-shadow:0 0 22px rgba(0,134,232,.5),0 8px 26px rgba(106,69,255,.38);
+  transition:background-position .5s,box-shadow .2s,transform .1s;
+}
+.btn-p:hover{background-position:100% 0;color:#fff;background-color:transparent;
+  box-shadow:0 0 30px rgba(0,229,255,.65),0 8px 30px rgba(209,28,184,.45)}
+.btn-p::after{
+  content:'';position:absolute;top:0;bottom:0;width:40%;left:-60%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);
+  transform:skewX(-20deg);transition:left .6s;pointer-events:none;
+}
+.btn-p:hover::after{left:130%}
+.btn-d{background:rgba(255,77,109,.1);border-color:rgba(255,77,109,.38);color:#ff7a92}
+.btn-d:hover{border-color:var(--red);box-shadow:0 0 20px rgba(255,77,109,.45);background:rgba(255,77,109,.16);color:#fff}
+
+/* ---- table ---- */
+.table-wrap{background:rgba(255,255,255,.025);border-color:rgba(255,255,255,.11)}
+th{background:rgba(0,229,255,.06);color:var(--accent2);letter-spacing:.01em;border-bottom:1px solid rgba(0,229,255,.2)}
+html.light th{color:var(--accent)}
+td{border-top-color:rgba(255,255,255,.07)}
+tr:hover td{background:rgba(0,229,255,.07)}
+tr:hover td:first-child{box-shadow:inset -3px 0 0 var(--accent)}
+
+/* ---- range tabs ---- */
+.range-tabs{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+.range-tab:hover{color:var(--t1)}
+.range-tab.on{
+  background:linear-gradient(120deg,#0086e8,#6a45ff);color:#fff;
+  box-shadow:0 0 18px rgba(0,229,255,.5);
+}
+
+/* ---- form fields ---- */
+.field label{color:var(--t3)}
+.field input,.field select,.field textarea{
+  background:var(--input-bg);border-color:rgba(255,255,255,.14);
+}
+.field input:focus,.field select:focus,.field textarea:focus{
+  border-color:var(--accent);
+  box-shadow:0 0 0 3px rgba(0,229,255,.14),0 0 24px rgba(0,229,255,.22);
+}
+
+/* ---- modal: opens with a quick pop ---- */
+.modal-bg{background:rgba(3,1,12,.62);backdrop-filter:blur(10px) saturate(130%)}
+.modal{
+  background:linear-gradient(160deg,rgba(34,22,74,.82),rgba(10,6,28,.88));
+  backdrop-filter:blur(28px) saturate(160%);
+  border:1px solid rgba(0,229,255,.28);
+  box-shadow:0 0 0 1px rgba(255,255,255,.05),0 30px 80px rgba(0,0,0,.6),0 0 70px rgba(138,92,255,.2);
+}
+html.light .modal{background:rgba(255,255,255,.86);border-color:rgba(8,145,178,.3)}
+.modal-bg.open .modal{animation:modalPop .26s cubic-bezier(.2,.9,.3,1.15)}
+@keyframes modalPop{from{opacity:0;transform:translateY(14px) scale(.96)}to{opacity:1;transform:none}}
+.modal-title{text-shadow:0 0 16px rgba(0,229,255,.4)}
+.link-box{background:rgba(0,0,0,.35);border-color:rgba(0,229,255,.22);color:var(--accent2)}
+html.light .link-box{background:rgba(255,255,255,.7)}
+
+/* ---- toast ---- */
+.toast{
+  background:rgba(14,9,34,.78);backdrop-filter:var(--glass);
+  border-color:rgba(0,229,255,.45);box-shadow:0 0 34px rgba(0,229,255,.28),var(--shadow);
+}
+html.light .toast{background:rgba(255,255,255,.88)}
+
+/* ---- switch ---- */
+.slider{background:rgba(255,255,255,.14)}
+.switch input:checked+.slider{background:var(--green);box-shadow:0 0 16px rgba(45,255,154,.65)}
+
+/* ---- badges ---- */
+.conn-badge.green{background:rgba(45,255,154,.14);color:#5dffb0;box-shadow:0 0 12px rgba(45,255,154,.25)}
+.conn-badge.orange{background:rgba(255,194,61,.14);color:#ffd36b;box-shadow:0 0 12px rgba(255,194,61,.22)}
+.conn-badge.red{background:rgba(255,77,109,.16);color:#ff8aa0;box-shadow:0 0 12px rgba(255,77,109,.25)}
+.conn-badge.gray{background:rgba(255,255,255,.08);color:var(--t3)}
+
+/* ---- logs & spinner ---- */
+.log-item{border-bottom-color:rgba(255,255,255,.07)}
+.log-time{color:var(--accent2);opacity:.7}
+.spin{border-color:rgba(255,255,255,.1);border-top-color:var(--accent);border-right-color:var(--pink);box-shadow:0 0 20px rgba(0,229,255,.35)}
+
+@media(max-width:900px){
+  /* lighter blur on phones for smooth scrolling */
+  :root{--glass:blur(14px) saturate(150%)}
+  body::after{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+}
+
+/* ---- layout: sidebar left, like the reference ---- */
+.sidebar{right:auto;left:0;border-left:0;border-right:1px solid rgba(0,229,255,.22);box-shadow:14px 0 60px rgba(0,229,255,.07),inset -1px 0 0 rgba(255,255,255,.08)}
+.sb-toggle{left:auto;right:-15px}
+.main{margin-right:0;margin-left:var(--sb)}.main.expanded{margin-right:0;margin-left:var(--sb-c)}
+.nav-item:hover{transform:translateX(3px)}
+@media(max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:none}.main,.main.expanded{margin-left:0}.topbar{display:none}}
+/* ---- top bar ---- */
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.tb-pill,.tb-admin,.tb-btn{background:rgba(255,255,255,.05);border:1px solid rgba(0,229,255,.22);backdrop-filter:var(--glass);border-radius:14px;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.tb-pill{display:flex;align-items:center;gap:10px;padding:9px 16px;font-size:12px;font-weight:600;color:var(--green)}
+.tb-clock{color:var(--t2);font-family:Orbitron,Vazirmatn,sans-serif;font-size:11px;direction:ltr}
+.live{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 10px var(--green);animation:livePulse 1.8s ease-in-out infinite}
+@keyframes livePulse{50%{opacity:.35;transform:scale(.8)}}
+.tb-right{display:flex;gap:10px;align-items:center}
+.tb-btn{width:42px;height:42px;display:flex;align-items:center;justify-content:center;color:var(--accent2);cursor:pointer}
+.tb-btn svg{width:18px;height:18px}.tb-btn:hover{box-shadow:0 0 18px rgba(0,229,255,.35)}
+.tb-admin{display:flex;align-items:center;gap:10px;padding:5px 14px 5px 10px}
+.tb-admin b{display:block;font-size:12px}.tb-admin small{color:var(--t3);font-size:10px}
+.tb-av{width:32px;height:32px;border-radius:50%;background:var(--neon);display:flex;align-items:center;justify-content:center;box-shadow:0 0 14px rgba(0,229,255,.5)}
+.tb-av svg{width:16px;height:16px;color:#fff}
+/* ---- dashboard grid (side column first = far right in RTL) ---- */
+.dash-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
+.dash-side .card,.dash-main .card{margin-bottom:16px}
+@media(max-width:1180px){.dash-grid{grid-template-columns:1fr}.dash-side{order:2}}
+.hero{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:26px 28px;margin-bottom:16px;border-radius:22px;
+  background:linear-gradient(120deg,rgba(0,134,232,.35),rgba(106,69,255,.3) 55%,rgba(209,28,184,.22));border:1px solid rgba(109,243,255,.5);
+  box-shadow:0 0 40px rgba(0,229,255,.22),inset 0 0 40px rgba(0,229,255,.08),inset 0 1px 0 rgba(255,255,255,.2);backdrop-filter:var(--glass)}
+.hero::after{content:'';position:absolute;top:0;bottom:0;width:30%;left:-40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.14),transparent);transform:skewX(-20deg);animation:heroSweep 6s ease-in-out infinite}
+@keyframes heroSweep{60%,100%{left:130%}}
+.hero h2{font-size:22px;font-weight:800;text-shadow:0 0 22px rgba(0,229,255,.6)}.hero p{color:var(--t2);margin-top:6px;font-size:13px}
+.hero-s{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;background:rgba(5,3,20,.4);border:1px solid rgba(0,229,255,.3)}
+.hero-s small{display:block;color:var(--t3);font-size:11px}.hero-s b{color:var(--green);text-shadow:0 0 12px var(--green);font-size:15px}
+.metric{display:flex;align-items:center;gap:14px}.m-ico{width:50px;height:50px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--mc);background:rgba(255,255,255,.05);box-shadow:inset 0 0 0 1px var(--mc),0 0 18px -2px var(--mc)}
+.m-ico svg{width:22px;height:22px}.m-body{min-width:0}.metric-val{font-size:22px}
+.g21{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,1fr);gap:16px}@media(max-width:900px){.g21{grid-template-columns:1fr}}
+.tchart{height:210px;direction:ltr}.tchart svg{width:100%;height:100%;overflow:visible}
+.tchart text{fill:var(--t3);font-size:9px;font-family:Vazirmatn,sans-serif}
+.donut-w{position:relative;width:150px;margin:6px auto 14px}.donut{width:150px;height:150px;transform:rotate(-90deg)}
+.donut circle{fill:none;stroke-width:9}.d-bg{stroke:rgba(255,255,255,.1)}.d-fg{stroke:var(--green);stroke-linecap:round;filter:drop-shadow(0 0 7px var(--green));transition:stroke-dasharray .9s cubic-bezier(.2,.8,.2,1)}
+.donut-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}.donut-c b{font:700 24px Orbitron,Vazirmatn,sans-serif;text-shadow:0 0 14px var(--green)}.donut-c small{color:var(--t3);font-size:10px}
+.legend>div{display:flex;align-items:center;gap:8px;padding:6px 0;font-size:12px;color:var(--t2)}.legend i{width:9px;height:9px;border-radius:50%}.legend b{margin-right:auto;font-family:Orbitron,Vazirmatn;font-size:11px}
+.qa-list{display:flex;flex-direction:column;gap:8px}
+.qa{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.28);color:var(--t1);font-family:inherit;font-size:13px;cursor:pointer;transition:.15s}
+.qa svg{width:17px;height:17px;color:var(--accent2)}.qa:hover{background:rgba(0,229,255,.12);box-shadow:0 0 20px rgba(0,229,255,.28);transform:translateX(3px)}
+.st{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;margin-bottom:6px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:12px}
+.st em{font-style:normal;color:var(--green);font-weight:700;display:flex;align-items:center;gap:6px;font-size:11px}.st em::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor;box-shadow:0 0 8px currentColor}
+.acts .log-item{padding:10px 12px;margin-bottom:6px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:rgba(255,255,255,.03)}
+.bt-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}@media(max-width:900px){.bt-row{grid-template-columns:1fr 1fr}}
+.bt{display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;font-family:inherit;color:var(--t1);text-align:right;cursor:pointer;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.12);transition:.2s}
+.bt:hover{border-color:var(--accent);box-shadow:0 0 26px rgba(0,229,255,.25);transform:translateY(-2px)}
+.bt-i{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(138,92,255,.2);color:var(--accent2);flex-shrink:0}.bt-i svg{width:18px;height:18px}
+.bt b{display:block;font-size:12px}.bt small{color:var(--t3);font-size:10px}
+.pill-on{background:rgba(45,255,154,.14);color:#5dffb0;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:700;box-shadow:0 0 12px rgba(45,255,154,.25)}
+.pill-off{background:rgba(255,77,109,.16);color:#ff8aa0;padding:3px 12px;border-radius:99px;font-size:11px;font-weight:700}
+/* ================= /NEON GLASS ================= */
 </style>
 </head>
 <body>
@@ -6320,7 +6655,7 @@ tr:hover td{background:var(--hover)}
     <div class="sb-logo-icon">AHB</div>
     <div class="sb-logo-text">
       <div class="sb-logo-name">AHBPanel</div>
-      <div class="sb-logo-ver">v14.2.0</div>
+      <div class="sb-logo-ver">v14.3.0</div>
     </div>
   </div>
   <nav class="nav">
@@ -6398,29 +6733,36 @@ tr:hover td{background:var(--hover)}
 <main class="main" id="main">
 
 <section class="page on" id="page-dash">
-  <div class="page-head">
-    <div>
-      <div class="page-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-        <span data-i18n="nav_dash">داشبورد</span>
+  <div class="topbar">
+    <div class="tb-pill"><i class="live"></i><span id="tbStatus">سیستم فعال است</span><span class="tb-clock" id="tbClock">--:--:--</span></div>
+    <div class="tb-right">
+      <button class="tb-btn" onclick="refreshAll()" title="refresh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></button>
+      <div class="tb-admin"><div class="tb-av"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div><div><b id="tbUser">admin</b><small id="tbRole">مدیر</small></div></div>
+    </div>
+  </div>
+  <div class="dash-grid">
+    <aside class="dash-side">
+      <div class="card"><div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span>عملیات سریع</span></div>
+        <div class="qa-list"><button class="qa" onclick="goPage('configs')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>مدیریت کانفیگ‌ها</span></button><button class="qa" onclick="goPage('create')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>ایجاد کانفیگ جدید</span></button><button class="qa" onclick="goPage('groups')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg><span>گروه‌ها و ساب‌ها</span></button><button class="qa" onclick="goPage('telegram')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg><span>تنظیمات ربات تلگرام</span></button><button class="qa" onclick="goPage('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span>تنظیمات پنل</span></button></div></div>
+      <div class="card"><div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg><span>وضعیت سیستم</span></div>
+        <div class="st-list"><div class="st"><span>سرور اصلی</span><em id="stServer">فعال</em></div><div class="st"><span>آپتایم</span><em id="stUp">—</em></div><div class="st"><span>درخواست‌ها</span><em id="stReq">—</em></div><div class="st"><span>خطاها</span><em id="stErr">—</em></div></div></div>
+      <div class="card"><div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span>آخرین فعالیت‌ها</span></div><div id="dashActs" class="acts"></div></div>
+    </aside>
+    <div class="dash-main">
+      <div class="hero"><div class="hero-t"><h2>به پنل مدیریت AHB خوش آمدید</h2><p>مدیریت آسان، سریع و حرفه‌ای</p><div class="page-sub" id="lastUpd" data-i18n="loading">در حال بارگـذاری...</div></div>
+        <div class="hero-s"><svg viewBox="0 0 64 64" width="64" height="64"><g fill="none" stroke="#6df3ff" stroke-width="2"><rect x="10" y="8" width="44" height="14" rx="4"/><rect x="10" y="25" width="44" height="14" rx="4"/><rect x="10" y="42" width="44" height="14" rx="4"/></g><g fill="#2dff9a"><circle cx="18" cy="15" r="2"/><circle cx="18" cy="32" r="2"/><circle cx="18" cy="49" r="2"/></g></svg><div><small>وضعیت سرور</small><b>آنلاین</b></div></div></div>
+      <div class="metrics">
+        <div class="metric"><div class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg></div><div class="m-body"><div class="metric-label" data-i18n="m_conns">اتصالات فعـال</div><div class="metric-val" id="mConns">—</div></div></div><div class="metric"><div class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M4 21h16"/></svg></div><div class="m-body"><div class="metric-label" data-i18n="m_traffic">ترافیک کـل</div><div class="metric-val" id="mTraffic">—</div></div></div><div class="metric"><div class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div><div class="m-body"><div class="metric-label" data-i18n="m_links">کانفیگ‌هـا</div><div class="metric-val" id="mLinks">—</div></div></div><div class="metric"><div class="m-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></div><div class="m-body"><div class="metric-label" data-i18n="m_uptime">آپتایـم سرور</div><div class="metric-val" id="mUptime" style="font-size:15px">—</div></div></div>
       </div>
-      <div class="page-sub" id="lastUpd" data-i18n="loading">در حال بارگـذاری...</div>
-    </div>
-  </div>
-  <div class="metrics">
-    <div class="metric"><div class="metric-label" data-i18n="m_conns">اتصالات فعـال</div><div class="metric-val" id="mConns">—</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="m_traffic">ترافیک کـل</div><div class="metric-val" id="mTraffic">—</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="m_links">کانفیگ‌هـا</div><div class="metric-val" id="mLinks">—</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="m_uptime">آپتایـم سرور</div><div class="metric-val" id="mUptime" style="font-size:17px">—</div></div>
-  </div>
-  <div class="g2">
-    <div class="card action-card" onclick="goPage('create')">
-      <div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="quick_create">ساخت کانفیگ</span></div>
-      <p style="color:var(--t2);font-size:12px;line-height:1.6" data-i18n="quick_create_desc">ساخت دستی با محدودیت ترافیک، سرعت، تعداد و انقضا</p>
-    </div>
-    <div class="card action-card purple" onclick="doAutoCreate()">
-      <div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg><span data-i18n="auto_create">ساخت خودکار (پیشنهادی)</span></div>
-      <p style="color:var(--t2);font-size:12px;line-height:1.6" data-i18n="auto_create_desc">ساخت سریع با تنظیمات بهینه · لینک VLESS و ساب</p>
+      <div class="g21">
+        <div class="card"><div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-6"/></svg><span>نمودار ترافیک مصرفی (ساعتی)</span></div><div id="trafficChart" class="tchart"></div></div>
+        <div class="card"><div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg><span>کانفیگ‌های فعال</span></div>
+          <div class="donut-w"><svg viewBox="0 0 120 120" class="donut"><circle cx="60" cy="60" r="48" class="d-bg"/><circle cx="60" cy="60" r="48" class="d-fg" id="donutFg" stroke-dasharray="0 302"/></svg><div class="donut-c"><b id="donutPct">0%</b><small>فعال</small></div></div>
+          <div class="legend"><div><i style="background:#2dff9a"></i><span>فعال</span><b id="lgAct">0</b></div><div><i style="background:#ff4d6d"></i><span>غیرفعال</span><b id="lgOff">0</b></div><div><i style="background:#8a5cff"></i><span>کل</span><b id="lgAll">0</b></div></div></div>
+      </div>
+      <div class="card"><div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>آخرین کانفیگ‌ها</span><button class="btn btn-sm" style="margin-right:auto" onclick="goPage('configs')">مشاهده همه</button></div>
+        <div class="table-wrap"><table><thead><tr><th>نام</th><th>پروتکل</th><th>انقضا</th><th>مصرف</th><th>حجم مجاز</th><th>وضعیت</th></tr></thead><tbody id="dashLinks"></tbody></table></div></div>
+      <div class="bt-row"><button class="bt" onclick="goPage('settings')"><div class="bt-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v3M12 20v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1 12h3M20 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div><div><b>تنظیمات کلی</b><small>پیکربندی پنل</small></div></button><button class="bt" onclick="goPage('groups')"><div class="bt-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg></div><div><b>مدیریت گروه‌ها</b><small>ساخت و ویرایش</small></div></button><button class="bt" onclick="goPage('stats')"><div class="bt-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-6"/></svg></div><div><b>گزارش ترافیک</b><small>آمار و گزارش‌ها</small></div></button><button class="bt" onclick="goPage('logs')"><div class="bt-i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></div><div><b>لاگ فعالیت</b><small>فعالیت‌های اخیر</small></div></button></div>
     </div>
   </div>
 </section>
@@ -7392,6 +7734,39 @@ async function restoreBot(){
 applyLang();loadMe();loadProtocols();loadGroups();refreshAll();setInterval(refreshAll,1000);
 
 
+</script>
+
+<script>
+(function(){
+  const E=id=>document.getElementById(id);
+  setInterval(()=>{const c=E('tbClock');if(c)c.textContent=new Date().toLocaleTimeString('en-GB')},1000);
+  async function me(){try{const r=await api('/api/me');if(r){E('tbUser').textContent=r.username||'admin';E('tbRole').textContent=r.role==='owner'||r.role==='superadmin'?'مدیر کل':(r.role||'مدیر')}}catch(e){}}
+  function chart(h){
+    const keys=Object.keys(h||{}).sort(), box=E('trafficChart');if(!box)return;
+    if(!keys.length){box.innerHTML='<div style="text-align:center;color:var(--t3);padding:70px 0;font-size:12px">هنوز ترافیکی ثبت نشده است</div>';return}
+    const v=keys.map(k=>h[k]),mx=Math.max(...v,1),W=560,H=190,pl=8,n=keys.length;
+    const X=i=>pl+(n===1?W/2:i*(W-2*pl)/(n-1)),Y=x=>H-18-(x/mx)*(H-40);
+    const pts=v.map((x,i)=>X(i)+','+Y(x)).join(' ');
+    let g='';for(let i=0;i<4;i++){const y=22+i*(H-40)/3;g+=`<line x1="0" x2="${W}" y1="${y}" y2="${y}" stroke="rgba(0,229,255,.12)"/>`}
+    const lab=keys.map((k,i)=>(n<=8||i%Math.ceil(n/8)===0)?`<text x="${X(i)}" y="${H}" text-anchor="middle">${k}</text>`:'').join('');
+    box.innerHTML=`<svg viewBox="0 0 ${W} ${H+4}" preserveAspectRatio="none"><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00e5ff" stop-opacity=".45"/><stop offset="1" stop-color="#8a5cff" stop-opacity="0"/></linearGradient></defs>${g}<polygon points="${X(0)},${H-18} ${pts} ${X(n-1)},${H-18}" fill="url(#cg)"/><polyline points="${pts}" fill="none" stroke="#6df3ff" stroke-width="2.5" stroke-linejoin="round" style="filter:drop-shadow(0 0 6px #00e5ff)"/>${v.map((x,i)=>`<circle cx="${X(i)}" cy="${Y(x)}" r="3.5" fill="#6df3ff"><title>${keys[i]} · ${fmtB(x)}</title></circle>`).join('')}${lab}</svg>`;
+  }
+  async function extras(){
+    try{const st=await api('/stats');if(st){chart(st.hourly);E('stUp').textContent=st.uptime||'—';E('stReq').textContent=st.total_requests??'—';E('stErr').textContent=st.total_errors??'—'}}catch(e){}
+    const arr=(typeof __allLinks!=='undefined'&&Array.isArray(__allLinks))?__allLinks:[];
+    const act=arr.filter(l=>l.active!==false).length,tot=arr.length,pct=tot?Math.round(act/tot*100):0;
+    E('donutFg').setAttribute('stroke-dasharray',(302*pct/100)+' 302');E('donutPct').textContent=pct+'%';
+    E('lgAct').textContent=act;E('lgOff').textContent=tot-act;E('lgAll').textContent=tot;
+    E('dashLinks').innerHTML=arr.slice(-5).reverse().map(l=>{
+      const on=l.active!==false,lim=Number(l.limit_bytes||0),ex=l.expires_at?String(l.expires_at).slice(0,10):'—';
+      return `<tr><td>${esc(l.name||l.label||'—')}</td><td>${esc(l.protocol||'—')}</td><td>${esc(ex)}</td><td>${fmtB(l.used_bytes)}</td><td>${lim?fmtB(lim):'∞'}</td><td><span class="${on?'pill-on':'pill-off'}">${on?'فعال':'غیرفعال'}</span></td></tr>`}).join('')||'<tr><td colspan="6" style="text-align:center;color:var(--t3)">کانفیگی وجود ندارد</td></tr>';
+    try{const d=await api('/api/activity');const logs=(Array.isArray(d)?d:(d&&d.logs)||[]).slice(-4).reverse();
+      E('dashActs').innerHTML=logs.map(l=>`<div class="log-item"><div class="log-time">${esc((l.time||l.ts||'').toString().slice(11,19)||'—')}</div><div class="log-msg">${esc(l.message||l.msg||'')}</div></div>`).join('')||'<div style="color:var(--t3);font-size:12px;text-align:center;padding:10px">فعالیتی ثبت نشده</div>'}catch(e){}
+  }
+  const _ra=refreshAll;
+  refreshAll=async function(){await _ra.apply(this,arguments);try{await extras()}catch(e){}};
+  me();setTimeout(()=>{try{extras()}catch(e){}},600);
+})();
 </script>
 </body>
 </html>
