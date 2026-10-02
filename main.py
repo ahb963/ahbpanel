@@ -2158,7 +2158,7 @@ html{scroll-behavior:smooth} body{overflow-x:hidden} button,input,select,textare
 .action-metric .am-label{color:var(--t3);font-size:10px;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:7px}
 .action-metric .am-value{font-size:24px;font-weight:900;letter-spacing:-.04em}
 .action-metric .am-note{font-size:9px;color:var(--t3);margin-top:6px}
-.action-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.8fr);gap:14px;margin-bottom:14px}
+.action-grid{display:block;margin-bottom:14px}
 .action-chart,.action-health{min-height:270px}
 .action-chart-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
 .action-chart-title{font-size:13px;font-weight:800}
@@ -2174,17 +2174,24 @@ html{scroll-behavior:smooth} body{overflow-x:hidden} button,input,select,textare
 .health-dot.warn{background:#f59e0b;box-shadow:0 0 10px #f59e0b}.health-dot.off{background:#ef4444;box-shadow:0 0 10px #ef4444}
 .health-value{font-weight:800;color:var(--t1)}
 .action-bottom{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr);gap:14px}
-.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.quick-action{display:flex;align-items:center;gap:12px;padding:15px;border-radius:15px;border:1px solid rgba(96,165,250,.11);background:rgba(8,19,40,.76);color:inherit;cursor:pointer;text-align:right;font-family:inherit;transition:.2s}
-.quick-action:hover{transform:translateY(-2px);border-color:rgba(96,165,250,.35);box-shadow:0 12px 28px rgba(59,130,246,.10)}
-.qa-icon{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(37,99,235,.25),rgba(124,58,237,.25));border:1px solid rgba(96,165,250,.16);color:#93c5fd;flex:0 0 auto}
-.qa-icon svg{width:19px;height:19px}.qa-title{font-size:11px;font-weight:800}.qa-desc{font-size:9px;color:var(--t3);margin-top:4px}
+.quick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.quick-action{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;min-height:150px;padding:12px 8px;border-radius:3px;border:1px solid rgba(255,255,255,.10);background:#f4f4f4;color:#111;cursor:pointer;text-align:center;font-family:inherit;transition:.2s}
+.quick-action:hover{transform:translateY(-2px);border-color:#777;box-shadow:0 10px 22px rgba(0,0,0,.18)}
+.qa-icon{width:92px;height:92px;border-radius:0;display:grid;place-items:center;background:#f4f4f4;border:0;color:#050505;flex:0 0 auto}
+.qa-icon svg{width:78px;height:78px;stroke-width:1.7}.qa-title{font-size:11px;font-weight:800;color:#111}.qa-desc{font-size:8px;color:#444;margin-top:3px;line-height:1.5}
 .config-health{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .chip-stat{padding:14px;border-radius:14px;background:rgba(2,10,25,.45);border:1px solid rgba(96,165,250,.08)}
 .chip-stat b{display:block;font-size:20px;font-weight:900;margin-top:5px}.chip-stat span{font-size:9px;color:var(--t3)}
 .activity-list{display:flex;flex-direction:column;gap:8px;max-height:235px;overflow:auto}.activity-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}.activity-icon{width:28px;height:28px;border-radius:9px;background:rgba(59,130,246,.10);color:#60a5fa;display:grid;place-items:center;flex:0 0 auto}.activity-icon svg{width:14px;height:14px}.activity-text{min-width:0;flex:1}.activity-text b{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.activity-text span{font-size:9px;color:var(--t3)}
 @media(max-width:1100px){.action-metrics{grid-template-columns:repeat(2,1fr)}.action-grid,.action-bottom{grid-template-columns:1fr}}
 @media(max-width:640px){.action-hero-content{align-items:flex-start;flex-direction:column}.hero-status{width:100%;min-width:0}.action-metrics{grid-template-columns:1fr 1fr}.quick-grid{grid-template-columns:1fr}.action-hero h1{font-size:20px}.chart-area{gap:4px}}
+
+/* Reference dashboard layout */
+.action-grid .action-chart,.action-grid .action-health{display:none}
+.action-bottom{display:block}
+.action-bottom>.card{margin-bottom:14px}
+.config-health{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+@media(min-width:901px){.quick-grid{grid-template-columns:repeat(3,minmax(0,1fr));}.quick-action{min-height:135px}}
 
 @media(max-width:900px){.container,.shell,.dashboard,.main,.content{max-width:100%!important;width:100%!important}.grid,.stats-grid,.cards-grid,.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.sidebar{z-index:1000}}
 @media(max-width:640px){body{padding:10px!important;font-size:14px}.grid,.stats-grid,.cards-grid,.form-grid{grid-template-columns:1fr!important}.card,.panel,.section,.modal{border-radius:18px!important}.modal{max-height:92vh;overflow:auto;padding:14px!important}.header,.topbar,.toolbar,.actions{flex-wrap:wrap!important}.header>* ,.topbar>*{max-width:100%}.btn,button{min-height:44px}.field input,.field select,.field textarea,input,select,textarea{min-height:44px;font-size:16px;max-width:100%}table{display:block;overflow-x:auto;white-space:nowrap}.link-row,.config-row{flex-direction:column!important;align-items:stretch!important}.brand-name{font-size:15px}}
@@ -6512,7 +6519,7 @@ tr:hover td{background:var(--hover)}
         <div class="chip-stat"><span>منقضی</span><b id="dashExpiredConfigs">—</b></div>
         <div class="chip-stat"><span>بدون محدودیت</span><b id="dashUnlimitedConfigs">—</b></div>
       </div>
-      <div style="margin-top:15px;font-size:10px;color:var(--t3);line-height:1.8">تمام عملیات از همین پنل و بدون هیچ بخش فروش انجام می‌شود.</div>
+      <div style="margin-top:15px;font-size:10px;color:var(--t3);line-height:1.8"></div>
     </div>
   </div>
 
