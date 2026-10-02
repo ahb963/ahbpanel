@@ -1,5 +1,5 @@
 # ============================================================
-# ahbpanel 14.1.0
+# ahbpanel 14.2.0
 # Railway Ready
 # Created By Ahb
 # ============================================================
@@ -38,7 +38,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # ============================================================
 
 APP_NAME = "ahbpanel"
-APP_VERSION = "14.1.0"
+APP_VERSION = "14.2.0"
 
 SUPPORT_USERNAME = "@ahb_panel"
 SUPPORT_URL = "https://t.me/ahbpanel"
@@ -2181,7 +2181,7 @@ AHB Panel
 </div>
 
 <div class="version">
-14.1.0
+14.2.0
 </div>
 </div>
 
@@ -2229,7 +2229,7 @@ class="btn secondary"
 <div class="footer">
 
 <span>
-AHB Panel · 14.1.0
+AHB Panel · 14.2.0
 </span>
 
 <a
@@ -3911,7 +3911,7 @@ async def info_page(
         link = LINKS.get(uid)
         if not link:
             return HTMLResponse(
-                "<html lang=\"fa\" dir=\"rtl\"><body style=\"margin:0;background:#f7f9ff;color:#101b55;font-family:sans-serif;padding:40px\"><h2>کانفیگ پیدا نشد</h2></body></html>",
+                '<html lang="fa" dir="rtl"><body style="margin:0;background:#030712;color:#fff;font-family:sans-serif;padding:40px"><h2>کانفیگ پیدا نشد</h2></body></html>',
                 status_code=404,
             )
         snapshot = dict(link)
@@ -3919,17 +3919,17 @@ async def info_page(
     host = get_host(request)
     vless_url = vless_link_for_link(snapshot, uid, host)
     sub_url = f"https://{host}/sub/{uid}"
+
     used = int(snapshot.get("used_bytes", 0) or 0)
     limit = int(snapshot.get("limit_bytes", 0) or 0)
-
     if limit > 0:
         usage_percent = max(0, min(100, round((used / limit) * 100, 1)))
-        usage_value = f"{fmt_bytes(used)} / {fmt_bytes(limit)}"
         remaining_value = fmt_bytes(max(0, limit - used))
+        total_value = fmt_bytes(limit)
     else:
         usage_percent = 0
-        usage_value = f"{fmt_bytes(used)} / نامحدود"
         remaining_value = "نامحدود"
+        total_value = "نامحدود"
 
     expires_at = snapshot.get("expires_at")
     if expires_at:
@@ -3944,9 +3944,9 @@ async def info_page(
                 hours, rem = divmod(rem, 3600)
                 minutes, _ = divmod(rem, 60)
                 expiry_remaining = (
-                    f"{days} روز و {hours} ساعت"
-                    if days
-                    else (f"{hours} ساعت و {minutes} دقیقه" if hours else f"{minutes} دقیقه")
+                    f"{days} روز" if days else
+                    f"{hours} ساعت" if hours else
+                    f"{minutes} دقیقه"
                 )
         except Exception:
             expiry_remaining = "نامشخص"
@@ -3956,296 +3956,215 @@ async def info_page(
         expiry_display = "نامحدود"
 
     status_text = "فعال" if is_link_allowed(snapshot) else "غیرفعال"
-    status_color = "#10b981" if status_text == "فعال" else "#ef4444"
-    label_escaped = escape_html(snapshot.get("label", "AHBPanel"))
-    uid_escaped = escape_html(uid)
-    app_version_str = escape_html(str(APP_VERSION))
-    used_bytes_str = escape_html(fmt_bytes(used))
-    limit_bytes_str = escape_html(fmt_bytes(limit)) if limit > 0 else "∞"
-    remaining_value_escaped = escape_html(remaining_value)
-    expiry_remaining_escaped = escape_html(expiry_remaining)
-    expiry_display_escaped = escape_html(expiry_display)
+    label = escape_html(snapshot.get("label", "AHB Panel"))
+    uid_e = escape_html(uid)
+    app_version = escape_html(str(APP_VERSION))
+    used_e = escape_html(fmt_bytes(used))
+    total_e = escape_html(total_value)
+    remaining_e = escape_html(remaining_value)
+    expiry_e = escape_html(expiry_display)
+    expiry_remaining_e = escape_html(expiry_remaining)
     ip_limit = "نامحدود" if not snapshot.get("ip_limit", 0) else str(snapshot.get("ip_limit"))
-    connection_limit = "نامحدود" if not snapshot.get("connection_limit", 0) else str(snapshot.get("connection_limit"))
+    conn_limit = "نامحدود" if not snapshot.get("connection_limit", 0) else str(snapshot.get("connection_limit"))
     speed_limit = "نامحدود" if not snapshot.get("speed_limit_bytes", 0) else fmt_bytes(snapshot.get("speed_limit_bytes", 0)) + "/s"
-    ip_limit_escaped = escape_html(ip_limit)
-    connection_limit_escaped = escape_html(connection_limit)
-    speed_limit_escaped = escape_html(speed_limit)
-    protocol_escaped = escape_html(snapshot.get("protocol", "vless-ws"))
-    fingerprint_escaped = escape_html(snapshot.get("fingerprint", "chrome"))
-    vless_url_escaped = escape_html(vless_url)
-    sub_url_escaped = escape_html(sub_url)
-    dash_calc_offset = f"{339.29 - (339.29 * min(usage_percent, 100) / 100):.1f}"
+    protocol = escape_html(snapshot.get("protocol", "vless-ws"))
+    fingerprint = escape_html(snapshot.get("fingerprint", "chrome"))
+    vless_e = escape_html(vless_url)
+    sub_e = escape_html(sub_url)
+    ring_offset = f"{339.29 - (339.29 * min(usage_percent, 100) / 100):.1f}"
+    unique_ips = len(unique_ips_for_uuid(uid))
 
-    # This page is intentionally kept inside /info/{uid}; /sub/{uid} remains the raw subscription endpoint.
     info_html = f"""<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>{label_escaped} | AHBPanel</title>
+<meta name="theme-color" content="#030817">
+<title>{label} | AHB PANEL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 <style>
-:root{{
-  --bg:#f7f9ff;
-  --card:rgba(255,255,255,.88);
-  --card2:#eef4ff;
-  --text:#101b55;
-  --muted:#50639e;
-  --blue:#2563eb;
-  --blue2:#60a5fa;
-  --red:#ef4444;
-  --green:#10b981;
-  --border:rgba(37,99,235,.20);
-  --shadow:0 16px 45px rgba(40,64,105,.10);
-}}
 *{{box-sizing:border-box}}
-html,body{{margin:0;min-height:100%;font-family:'Vazirmatn',Tahoma,sans-serif;color:var(--text)}}
-body{{
-  min-height:100vh;padding:18px 14px 30px;overflow-x:hidden;
-  background:
-    radial-gradient(ellipse 70% 30% at 0% 5%,rgba(96,165,250,.22),transparent 65%),
-    radial-gradient(ellipse 60% 30% at 100% 5%,rgba(239,68,68,.14),transparent 65%),
-    linear-gradient(180deg,#fbfcff 0%,#f5f8ff 100%);
-  transition:.25s ease;
-}}
-body:before,body:after{{content:"";position:fixed;z-index:-1;width:230px;height:230px;bottom:-90px;border-radius:50%;filter:blur(2px);opacity:.35;pointer-events:none}}
-body:before{{right:-110px;background:radial-gradient(circle,rgba(239,68,68,.42),transparent 67%)}}
-body:after{{left:-110px;background:radial-gradient(circle,rgba(37,99,235,.40),transparent 67%)}}
-body.dark{{
-  --bg:#071021;--card:rgba(10,24,48,.88);--card2:#0e2447;--text:#f5f8ff;--muted:#9db0d8;
-  --border:rgba(96,165,250,.24);--shadow:0 18px 55px rgba(0,0,0,.30);
-  background:radial-gradient(ellipse 70% 30% at 0% 5%,rgba(37,99,235,.22),transparent 65%),radial-gradient(ellipse 60% 30% at 100% 5%,rgba(239,68,68,.14),transparent 65%),#071021;
-}}
-.page{{width:100%;max-width:930px;margin:0 auto}}
-.theme-box,.hero,.traffic,.details{{background:var(--card);border:1.5px solid var(--border);box-shadow:var(--shadow);backdrop-filter:blur(16px)}}
-.theme-box{{min-height:105px;border-radius:30px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative;overflow:hidden}}
-.theme-box:after,.hero:after{{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(90deg,rgba(37,99,235,.06),transparent 45%,rgba(239,68,68,.05))}}
-.theme-left{{display:flex;align-items:center;gap:18px;position:relative;z-index:1}}
-.theme-icon{{font-size:39px;line-height:1}}
-.theme-title{{font-size:25px;font-weight:900}}
-.theme-desc{{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.9}}
-.switch{{position:relative;width:84px;height:44px;display:inline-block;flex:none;z-index:2}}
-.switch input{{opacity:0;width:0;height:0}}
-.slider{{position:absolute;inset:0;background:#d8dfef;border-radius:999px;cursor:pointer;transition:.2s;border:1px solid rgba(16,27,85,.06)}}
-.slider:before{{content:"✓";position:absolute;width:34px;height:34px;left:4px;top:4px;border-radius:50%;background:#fff;color:#c9d2e5;display:grid;place-items:center;font-weight:900;font-size:17px;transition:.2s;box-shadow:0 3px 8px rgba(20,40,80,.10)}}
-.switch input:checked+.slider{{background:linear-gradient(90deg,var(--blue),var(--red))}}
-.switch input:checked+.slider:before{{transform:translateX(40px);color:var(--green)}}
-.theme-moon{{font-size:29px;opacity:.85}}
-.hero{{margin-top:22px;border-radius:30px;padding:22px;position:relative;overflow:hidden}}
-.hero-top{{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;position:relative;z-index:1}}
-.hero-title{{font-size:31px;font-weight:900;letter-spacing:-.5px}}
-.hero-meta{{margin-top:7px;color:var(--muted);font-size:16px;direction:ltr;text-align:right;line-height:1.8}}
-.shield{{width:58px;height:58px;display:grid;place-items:center;border-radius:18px;border:1px solid rgba(37,99,235,.22);color:var(--blue);background:rgba(37,99,235,.07);font-size:32px}}
-.hero-bottom{{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px;position:relative;z-index:1}}
-.pill{{min-height:52px;border-radius:28px;padding:0 25px;display:inline-flex;align-items:center;justify-content:center;gap:9px;font-size:18px;font-weight:900}}
-.share{{color:#fff;text-decoration:none;background:linear-gradient(100deg,#1677ee 0%,#6a5be8 45%,#ff4d55 100%);box-shadow:0 8px 22px rgba(37,99,235,.18)}}
-.status{{background:#11b99b;color:#fff;min-width:155px}}
-.qr{{background:linear-gradient(180deg,#fff1f3,#ffe5e9);border:1px solid rgba(239,68,68,.22);color:#e72f3d;cursor:pointer}}
-.hero-actions{{display:flex;gap:12px;align-items:center;flex-wrap:wrap}}
-.traffic{{margin-top:22px;border-radius:30px;padding:23px;position:relative;overflow:hidden}}
-.section-head{{display:flex;align-items:center;justify-content:flex-start;gap:10px}}
-.section-head h2{{margin:0;font-size:25px;font-weight:900}}
-.section-sub{{font-size:13px;letter-spacing:1.5px;color:var(--muted);font-weight:700;margin-top:2px}}
-.chart-icon{{font-size:31px;color:var(--red)}}
-.usage-main{{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0 4px}}
-.ring-wrap{{position:relative;width:245px;height:245px}}
-.ring{{width:245px;height:245px;transform:rotate(-90deg)}}
-.ring-track{{stroke:#a9c8ff;opacity:.9}}
-.ring-fill{{stroke:#22c55e;filter:drop-shadow(0 0 5px rgba(34,197,94,.20))}}
+:root{{--bg:#020817;--card:rgba(8,20,43,.72);--card2:rgba(10,27,55,.62);--line:rgba(112,170,255,.15);--text:#f7fbff;--muted:#91a4c4;--blue:#2495ff;--purple:#a855f7;--pink:#ec4899;--green:#16e6a0}}
+html,body{{margin:0;min-height:100%;background:var(--bg);color:var(--text);font-family:'Vazirmatn',system-ui,sans-serif}}
+body{{overflow-x:hidden;background:radial-gradient(900px 500px at 10% -10%,rgba(0,145,255,.22),transparent 58%),radial-gradient(700px 500px at 100% 12%,rgba(183,50,255,.18),transparent 58%),radial-gradient(700px 500px at 55% 100%,rgba(0,220,175,.08),transparent 60%),#020817}}
+body:before{{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 85%)}}
+.wrap{{width:min(1120px,calc(100% - 24px));margin:auto;padding:22px 0 92px}}
+.top{{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}}
+.brand{{display:flex;align-items:center;gap:12px}}
+.brand-mark{{font-size:38px;line-height:1;font-weight:900;font-style:italic;letter-spacing:-4px;background:linear-gradient(110deg,#12a8ff,#6d72ff,#db3eff);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 35px rgba(42,150,255,.25)}}
+.brand-name{{font-size:12px;letter-spacing:4px;font-weight:900;color:#e8f1ff}}
+.brand-sub{{font-size:10px;color:#8497b8;margin-top:2px}}
+.top-actions{{display:flex;gap:8px}}
+.icon-btn{{width:44px;height:44px;border-radius:15px;border:1px solid rgba(122,170,255,.13);background:rgba(9,24,51,.72);color:#b7c8e5;display:grid;place-items:center;backdrop-filter:blur(16px)}}
+.card{{border:1px solid var(--line);background:linear-gradient(145deg,rgba(12,31,64,.82),rgba(5,16,36,.72));border-radius:25px;box-shadow:0 20px 80px rgba(0,0,0,.24);backdrop-filter:blur(20px)}}
+.hero{{position:relative;overflow:hidden;padding:25px;background:radial-gradient(circle at 0% 100%,rgba(0,157,255,.34),transparent 48%),radial-gradient(circle at 100% 0%,rgba(208,37,255,.3),transparent 46%),linear-gradient(135deg,rgba(8,40,79,.92),rgba(21,10,59,.92))}}
+.hero:after{{content:"";position:absolute;width:260px;height:260px;right:18%;top:-150px;border-radius:50%;background:rgba(255,255,255,.035);filter:blur(2px)}}
+.hero-grid{{position:relative;z-index:1;display:grid;grid-template-columns:1fr 180px;gap:22px;align-items:center}}
+.badge{{display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:999px;background:linear-gradient(135deg,#10c98a,#06b981);color:#001b16;font-size:12px;font-weight:900;box-shadow:0 0 30px rgba(16,201,138,.18)}}
+.hero h1{{margin:15px 0 5px;font-size:32px;line-height:1.2;font-weight:900}}
+.hero-expire{{font-size:12px;color:#b5c4df}}
+.vip{{margin-top:16px;display:inline-flex;align-items:center;gap:10px;padding:9px 14px;border-radius:14px;border:1px solid rgba(120,165,255,.18);background:rgba(4,14,34,.32);color:#c8d7f0;font-size:11px}}
+.vip b{{padding:5px 10px;border-radius:10px;background:linear-gradient(135deg,#f7b733,#f59e0b);color:#211100}}
+.ring{{width:154px;height:154px;position:relative;margin:auto}}
+.ring svg{{width:100%;height:100%;transform:rotate(-90deg);filter:drop-shadow(0 0 9px rgba(15,232,166,.25))}}
+.ring-track{{fill:none;stroke:rgba(255,255,255,.11);stroke-width:10}}
+.ring-progress{{fill:none;stroke:url(#rg);stroke-width:10;stroke-linecap:round;stroke-dasharray:339.29;stroke-dashoffset:{ring_offset}}}
 .ring-center{{position:absolute;inset:0;display:grid;place-items:center;text-align:center}}
-.ring-number{{font-size:42px;font-weight:900;line-height:1}}
-.ring-label{{margin-top:8px;font-size:15px;color:var(--muted);font-weight:700}}
-.usage-total{{margin-top:3px;font-size:24px;font-weight:900;direction:ltr;color:var(--muted)}}
-.trend{{margin-top:24px;border-radius:22px;border:1px solid rgba(37,99,235,.18);background:linear-gradient(180deg,rgba(239,244,255,.92),rgba(229,237,255,.76));padding:17px 19px}}
-body.dark .trend{{background:rgba(4,17,38,.58)}}
-.trend-title{{font-size:17px;font-weight:800;text-align:right;color:var(--text)}}
-.progress{{height:22px;border-radius:99px;background:#dce8ff;overflow:hidden;margin-top:25px;box-shadow:inset 0 1px 5px rgba(20,50,100,.10)}}
-.progress-fill{{height:100%;width:{usage_percent}%;min-width:{'0' if usage_percent==0 else '8'}px;border-radius:inherit;background:linear-gradient(90deg,#2196ff,#2458ef)}}
-.bottom-stats{{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:25px;font-size:18px;color:var(--muted);font-weight:700}}
-.bottom-stat b{{color:var(--text);font-size:21px}}
-.details{{margin-top:22px;border-radius:26px;padding:20px}}
-.detail-grid{{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}}
-.detail{{border:1px solid rgba(37,99,235,.12);background:var(--card2);border-radius:17px;padding:14px}}
-.detail-label{{font-size:12px;color:var(--muted)}}
-.detail-value{{margin-top:5px;font-size:14px;font-weight:900;direction:ltr;text-align:right;word-break:break-word}}
-.link-card{{margin-top:22px;border-radius:26px;padding:20px;background:var(--card);border:1.5px solid var(--border);box-shadow:var(--shadow)}}
-.link-head{{display:flex;align-items:center;justify-content:space-between;gap:10px}}
-.link-title{{font-size:20px;font-weight:900}}
-.copy-btn{{border:0;color:#fff;background:linear-gradient(100deg,#176be7,#347ff3);padding:12px 19px;border-radius:13px;font-family:inherit;font-weight:900;cursor:pointer}}
-.url-box{{margin-top:13px;border:1px solid rgba(37,99,235,.16);background:var(--card2);border-radius:16px;padding:15px;color:var(--muted);font-family:ui-monospace,Consolas,monospace;font-size:12px;direction:ltr;text-align:left;word-break:break-all;line-height:1.8}}
-.link-actions{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}}
-.action-btn{{min-height:55px;border-radius:17px;border:1px solid rgba(37,99,235,.16);background:var(--card2);color:var(--text);font:800 16px 'Vazirmatn';cursor:pointer;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px}}
-.action-btn.download{{background:linear-gradient(100deg,#1677ee,#367cf0);color:#fff;border-color:transparent}}
-.footer{{text-align:center;color:var(--muted);font-size:12px;padding:22px 0 4px}}
-.modal{{position:fixed;inset:0;z-index:50;background:rgba(5,12,30,.72);display:none;align-items:center;justify-content:center;padding:18px;backdrop-filter:blur(8px)}}
+.ring-number{{font-size:28px;font-weight:900}}
+.ring-label{{font-size:10px;color:#9fb1ce;margin-top:3px}}
+.stats{{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:15px}}
+.stat{{padding:19px 16px;border-radius:20px}}
+.stat-icon{{width:39px;height:39px;border-radius:13px;display:grid;place-items:center;background:rgba(20,130,255,.11);color:#24a1ff;border:1px solid rgba(36,161,255,.15)}}
+.stat:nth-child(2) .stat-icon{{color:#b06cff;background:rgba(168,85,247,.11);border-color:rgba(168,85,247,.15)}}
+.stat:nth-child(3) .stat-icon{{color:#ffb52e;background:rgba(245,158,11,.11);border-color:rgba(245,158,11,.15)}}
+.stat:nth-child(4) .stat-icon{{color:#ff56b5;background:rgba(236,72,153,.11);border-color:rgba(236,72,153,.15)}}
+.stat-title{{margin-top:13px;font-size:11px;color:#8ea1c0}}
+.stat-value{{margin-top:5px;font-size:18px;font-weight:900;word-break:break-word}}
+.stat-small{{margin-top:3px;font-size:9px;color:#647998}}
+.section{{margin-top:15px;padding:21px}}
+.section-title{{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}}
+.section-title h2{{font-size:15px;margin:0;font-weight:900}}
+.section-title span{{font-size:9px;color:#647998}}
+.connection{{display:grid;grid-template-columns:1fr 230px;gap:18px}}
+.fields{{display:grid;gap:9px}}
+.field{{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:15px;background:rgba(3,12,29,.45);border:1px solid rgba(112,170,255,.08)}}
+.field-label{{color:#7186a7;font-size:10px;white-space:nowrap}}
+.field-value{{font-size:11px;font-weight:700;word-break:break-all;text-align:left;direction:ltr;color:#e5efff}}
+.qr-box{{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:15px;border-radius:20px;background:rgba(3,12,29,.45);border:1px solid rgba(112,170,255,.08)}}
+#qr-main{{background:#fff;border-radius:14px;padding:8px;line-height:0}}
+#qr-main img{{display:block;width:150px;height:150px}}
+.btn{{border:0;border-radius:13px;padding:11px 14px;font:inherit;font-size:11px;font-weight:900;cursor:pointer;color:white;background:linear-gradient(100deg,#078cff,#9844ff);box-shadow:0 9px 30px rgba(38,115,255,.18)}}
+.btn.secondary{{background:linear-gradient(100deg,#8746ff,#d736ff)}}
+.qr-btn{{width:100%;margin-top:10px}}
+.link-row{{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px;border-radius:16px;background:rgba(3,12,29,.45);border:1px solid rgba(112,170,255,.08);margin-top:10px}}
+.link-text{{font-size:10px;line-height:1.8;color:#a5b7ff;word-break:break-all;direction:ltr;text-align:left;font-family:ui-monospace,Consolas,monospace}}
+.servers{{display:grid;grid-template-columns:repeat(4,1fr);gap:11px}}
+.server{{padding:14px;border-radius:17px;background:rgba(3,12,29,.48);border:1px solid rgba(112,170,255,.08);display:flex;align-items:center;justify-content:space-between;gap:8px}}
+.server-main{{display:flex;align-items:center;gap:9px}}
+.flag{{font-size:22px}}
+.server-name{{font-size:11px;font-weight:800}}
+.server-status{{margin-top:3px;font-size:9px;color:#12df99;display:flex;align-items:center;gap:5px}}
+.server-status i{{width:5px;height:5px;border-radius:50%;background:#12df99;box-shadow:0 0 9px #12df99}}
+.server-arrow{{color:#7890b5}}
+.footer{{text-align:center;color:#687c9e;font-size:10px;padding:20px 0 7px}}
+.bottom{{position:fixed;z-index:30;bottom:0;left:0;right:0;background:rgba(3,11,27,.9);border-top:1px solid rgba(100,155,240,.12);backdrop-filter:blur(22px)}}
+.bottom-inner{{width:min(650px,100%);margin:auto;display:grid;grid-template-columns:repeat(4,1fr)}}
+.nav{{padding:11px 6px 9px;text-align:center;color:#7890b5;font-size:9px;font-weight:700}}
+.nav.active{{color:#39a8ff}}
+.nav svg{{display:block;margin:0 auto 4px}}
+.modal{{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:18px;background:rgba(0,0,0,.78);backdrop-filter:blur(12px)}}
 .modal.show{{display:flex}}
-.modal-card{{width:min(420px,100%);background:#fff;border-radius:25px;padding:22px;text-align:center;box-shadow:0 25px 80px rgba(0,0,0,.3)}}
-.modal-title{{font-weight:900;color:#101b55;font-size:18px}}
-.qrbox{{margin:16px auto;background:#fff;padding:12px;border-radius:18px;display:inline-block}}
-.close{{border:0;background:#eef2fa;color:#101b55;border-radius:12px;padding:10px 16px;font-family:inherit;font-weight:800;cursor:pointer}}
-@media(max-width:650px){{
-  body{{padding:12px 9px 24px}}
-  .theme-box{{min-height:94px;border-radius:24px;padding:15px 16px}}
-  .theme-left{{gap:11px}} .theme-icon{{font-size:31px}} .theme-title{{font-size:21px}} .theme-desc{{font-size:11px}}
-  .switch{{width:70px;height:38px}} .slider:before{{width:30px;height:30px;font-size:14px}} .switch input:checked+.slider:before{{transform:translateX(32px)}} .theme-moon{{font-size:22px}}
-  .hero,.traffic,.details,.link-card{{border-radius:24px;padding:17px}}
-  .hero-title{{font-size:26px}} .hero-meta{{font-size:12px}} .shield{{width:48px;height:48px;font-size:26px;border-radius:15px}}
-  .hero-bottom{{flex-direction:column;align-items:stretch}} .hero-actions{{justify-content:space-between}}
-  .pill{{min-height:48px;font-size:15px;padding:0 18px}}
-  .status{{min-width:135px}} .section-head h2{{font-size:22px}}
-  .ring-wrap,.ring{{width:205px;height:205px}} .ring-number{{font-size:35px}}
-  .usage-total{{font-size:19px}} .trend{{padding:14px}} .progress{{height:19px}}
-  .bottom-stats{{font-size:14px}} .bottom-stat b{{font-size:17px}}
-  .detail-grid{{grid-template-columns:1fr}} .link-head{{align-items:flex-start}} .link-title{{font-size:17px}}
-  .link-actions{{grid-template-columns:1fr 1fr}} .action-btn{{font-size:14px}}
-}}
+.modal-card{{width:min(360px,100%);padding:22px;border-radius:25px;background:#071126;border:1px solid rgba(112,170,255,.2);text-align:center}}
+#qr-modal{{display:inline-block;background:white;padding:10px;border-radius:16px;line-height:0;margin:12px 0}}
+@media(max-width:800px){{.hero-grid{{grid-template-columns:1fr 145px}}.connection{{grid-template-columns:1fr 205px}}.servers{{grid-template-columns:repeat(2,1fr)}}}}
+@media(max-width:620px){{.wrap{{width:min(100% - 16px,1120px);padding-top:13px}}.brand-mark{{font-size:32px}}.hero{{padding:19px}}.hero-grid{{grid-template-columns:1fr;gap:14px}}.ring{{width:130px;height:130px;margin:0 auto}}.hero h1{{font-size:27px}}.stats{{grid-template-columns:repeat(2,1fr);gap:9px}}.stat{{padding:14px}}.stat-value{{font-size:15px}}.connection{{grid-template-columns:1fr}}.qr-box{{order:-1}}#qr-main img{{width:135px;height:135px}}.servers{{grid-template-columns:repeat(2,1fr)}}.section{{padding:16px}}.field{{align-items:flex-start;flex-direction:column;gap:5px}}.field-value{{width:100%}}.link-row{{grid-template-columns:1fr}}.link-row .btn{{width:100%}}}}
 </style>
 </head>
 <body>
-<div class="page">
-
-  <div class="theme-box">
-    <div class="theme-left">
-      <div class="theme-icon">🎨</div>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
       <div>
-        <div class="theme-title">تم</div>
-        <div class="theme-desc">با فعال کردن این گزینه، تم برنامه به حالت تیره تغییر می‌کند.</div>
+        <div class="brand-mark">AHB</div>
+        <div class="brand-name">PANEL</div>
       </div>
+      <div class="brand-sub">اتصال سریع، بدون محدودیت</div>
     </div>
-    <div style="display:flex;align-items:center;gap:10px">
-      <label class="switch" aria-label="تغییر تم"><input id="themeToggle" type="checkbox"><span class="slider"></span></label>
-      <span class="theme-moon">☾</span>
+    <div class="top-actions">
+      <button class="icon-btn" aria-label="اعلان"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></svg></button>
+      <button class="icon-btn" aria-label="منو"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
     </div>
-  </div>
+  </header>
 
-  <section class="hero">
-    <div class="hero-top">
+  <section class="card hero">
+    <div class="hero-grid">
       <div>
-        <div class="hero-title">لینک پشتی فرض</div>
-        <div class="hero-meta">AHBPanel &nbsp;·&nbsp; {app_version_str}<br>UUID: {uid_escaped}</div>
+        <span class="badge"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg>{status_text} اشتراک</span>
+        <h1>طرح ویژه</h1>
+        <div class="hero-expire">تاریخ انقضا: <b>{expiry_e}</b></div>
+        <div class="vip"><b>♛ VIP</b><span>دسترسی کامل به تمام سرورها</span></div>
       </div>
-      <div class="shield">♢</div>
-    </div>
-    <div class="hero-bottom">
-      <a class="pill share" href="javascript:void(0)" onclick="shareLink()">🔗 لینک اشتراک</a>
-      <div class="hero-actions">
-        <div class="pill status" style="background:{status_color}">✓&nbsp; {status_text}</div>
-        <button class="pill qr" onclick="openQr()">QR Code &nbsp; ▦</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="traffic">
-    <div class="section-head">
-      <div>
-        <h2>مصرف سرویس</h2>
-        <div class="section-sub">TRAFFIC OVERVIEW</div>
-      </div>
-      <div class="chart-icon">⌁</div>
-    </div>
-
-    <div class="usage-main">
-      <div class="ring-wrap">
-        <svg class="ring" viewBox="0 0 132 132" aria-label="درصد مصرف">
-          <circle cx="66" cy="66" r="54" fill="none" class="ring-track" stroke-width="10"/>
-          <circle cx="66" cy="66" r="54" fill="none" class="ring-fill" stroke-width="10" stroke-linecap="round" stroke-dasharray="339.29" stroke-dashoffset="{dash_calc_offset}"/>
+      <div class="ring">
+        <svg viewBox="0 0 132 132" aria-label="درصد مصرف">
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#13e5a2"/><stop offset="1" stop-color="#07bdfd"/></linearGradient></defs>
+          <circle class="ring-track" cx="66" cy="66" r="54"/>
+          <circle class="ring-progress" cx="66" cy="66" r="54"/>
         </svg>
-        <div class="ring-center">
-          <div>
-            <div class="ring-number">{usage_percent}%</div>
-            <div class="ring-label">مصرف شده</div>
-          </div>
-        </div>
+        <div class="ring-center"><div><div class="ring-number">{usage_percent}%</div><div class="ring-label">مصرف شده</div></div></div>
       </div>
-      <div class="usage-total">{used_bytes_str} / {limit_bytes_str}</div>
-    </div>
-
-    <div class="trend">
-      <div class="trend-title">روند مصرف ↗</div>
-      <div class="progress"><div class="progress-fill"></div></div>
-    </div>
-
-    <div class="bottom-stats">
-      <div class="bottom-stat">◷ &nbsp;باقی‌مانده: <b>{remaining_value_escaped}</b></div>
-      <div class="bottom-stat">▣ &nbsp;زمان: <b>{expiry_remaining_escaped}</b></div>
     </div>
   </section>
 
-  <section class="link-card">
-    <div class="link-head">
-      <div class="link-title">🔗 لینک اشتراک</div>
-      <button class="copy-btn" id="copySub" onclick="copyText('{sub_url_escaped}')">▣ &nbsp; کپی</button>
-    </div>
-    <div class="url-box" id="subUrl">{sub_url_escaped}</div>
-    <div class="link-actions">
-      <button class="action-btn" onclick="openQr()">▦ &nbsp; QR Code</button>
-      <a class="action-btn download" href="{sub_url_escaped}" download>⇩ &nbsp; دانلود لینک</a>
+  <section class="stats">
+    <div class="card stat"><div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 15a4 4 0 0 1 4-4h1a5 5 0 0 1 9.8-1A3.5 3.5 0 1 1 18 17H7a4 4 0 0 1-4-2z"/><path d="M12 12v7M9 16l3 3 3-3"/></svg></div><div class="stat-title">حجم مصرفی</div><div class="stat-value">{used_e}</div><div class="stat-small">از {total_e}</div></div>
+    <div class="card stat"><div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 19V5M7 10l5-5 5 5"/><path d="M5 19h14"/></svg></div><div class="stat-title">حجم باقیمانده</div><div class="stat-value">{remaining_e}</div><div class="stat-small">از {total_e}</div></div>
+    <div class="card stat"><div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div class="stat-title">زمان باقی‌مانده</div><div class="stat-value">{expiry_remaining_e}</div><div class="stat-small">اشتراک فعلی</div></div>
+    <div class="card stat"><div class="stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m13 2-2 8H5l6 4-2 8 2-3 8-11h-6l2-6z"/></svg></div><div class="stat-title">سرعت اتصال</div><div class="stat-value">{escape_html(speed_limit)}</div><div class="stat-small">بدون محدودیت</div></div>
+  </section>
+
+  <section class="card section">
+    <div class="section-title"><h2>اطلاعات اتصال</h2><span>Connection Info</span></div>
+    <div class="connection">
+      <div class="fields">
+        <div class="field"><span class="field-label">نام کاربری</span><span class="field-value">{label}</span></div>
+        <div class="field"><span class="field-label">شناسه</span><span class="field-value">{uid_e}</span></div>
+        <div class="field"><span class="field-label">آدرس سرور</span><span class="field-value">{escape_html(host)}</span></div>
+        <div class="field"><span class="field-label">پروتکل</span><span class="field-value">{protocol}</span></div>
+        <div class="field"><span class="field-label">پورت</span><span class="field-value">{escape_html(snapshot.get("port", 443))}</span></div>
+      </div>
+      <div class="qr-box">
+        <div id="qr-main"></div>
+        <button class="btn qr-btn" type="button" onclick="openQr()">▦ &nbsp; دانلود QR Code</button>
+      </div>
     </div>
   </section>
 
-  <section class="details">
-    <div class="link-title">جزئیات سرویس</div>
-    <div class="detail-grid">
-      <div class="detail"><div class="detail-label">مصرف فعلی</div><div class="detail-value">{used_bytes_str}</div></div>
-      <div class="detail"><div class="detail-label">باقی‌مانده</div><div class="detail-value">{remaining_value_escaped}</div></div>
-      <div class="detail"><div class="detail-label">تاریخ انقضا</div><div class="detail-value">{expiry_display_escaped}</div></div>
-      <div class="detail"><div class="detail-label">IP Limit</div><div class="detail-value">{ip_limit_escaped}</div></div>
-      <div class="detail"><div class="detail-label">Connection Limit</div><div class="detail-value">{connection_limit_escaped}</div></div>
-      <div class="detail"><div class="detail-label">Speed Limit</div><div class="detail-value">{speed_limit_escaped}</div></div>
-      <div class="detail"><div class="detail-label">Protocol</div><div class="detail-value">{protocol_escaped}</div></div>
-      <div class="detail"><div class="detail-label">Fingerprint</div><div class="detail-value">{fingerprint_escaped}</div></div>
+  <section class="card section">
+    <div class="section-title"><h2>لینک اشتراک</h2><span>Subscription Link</span></div>
+    <div class="link-row"><div class="link-text" id="subText">{sub_e}</div><button class="btn secondary" onclick="copyText('subText',this)">کپی لینک</button></div>
+    <div class="link-row"><div class="link-text" id="vlessText">{vless_e}</div><button class="btn" onclick="copyText('vlessText',this)">کپی کانفیگ</button></div>
+  </section>
+
+  <section class="card section">
+    <div class="section-title"><h2>سرورهای فعال</h2><span>{unique_ips} اتصال ثبت‌شده</span></div>
+    <div class="servers">
+      <div class="server"><div class="server-main"><span class="flag">🇮🇷</span><div><div class="server-name">ایران</div><div class="server-status"><i></i> فعال</div></div></div><span class="server-arrow">‹</span></div>
+      <div class="server"><div class="server-main"><span class="flag">🇩🇪</span><div><div class="server-name">آلمان</div><div class="server-status"><i></i> فعال</div></div></div><span class="server-arrow">‹</span></div>
+      <div class="server"><div class="server-main"><span class="flag">🇺🇸</span><div><div class="server-name">آمریکا</div><div class="server-status"><i></i> فعال</div></div></div><span class="server-arrow">‹</span></div>
+      <div class="server"><div class="server-main"><span class="flag">🇹🇷</span><div><div class="server-name">ترکیه</div><div class="server-status"><i></i> فعال</div></div></div><span class="server-arrow">‹</span></div>
     </div>
   </section>
 
-  <div class="footer">AHBPanel {app_version_str} &nbsp;·&nbsp; لینک اطلاعات سرویس</div>
+  <div class="footer">بهترین انتخاب برای اتصال پایدار &nbsp;·&nbsp; <b>AHB PANEL</b> &nbsp;·&nbsp; نسخه {app_version}</div>
 </div>
 
-<div class="modal" id="qrModal" onclick="if(event.target===this)closeQr()">
-  <div class="modal-card">
-    <div class="modal-title">QR Code کانفیگ</div>
-    <div class="qrbox" id="qrBox"></div>
-    <div style="font:11px ui-monospace,monospace;color:#50639e;direction:ltr;word-break:break-all;line-height:1.7">{vless_url_escaped}</div>
-    <div style="margin-top:15px"><button class="close" onclick="closeQr()">بستن</button></div>
-  </div>
-</div>
+<nav class="bottom"><div class="bottom-inner">
+  <div class="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M9 21v-7h6v7"/></svg>خانه</div>
+  <div class="nav active"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 10v6M12 7h.01"/></svg>اطلاعات</div>
+  <div class="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M19.4 15a1.8 1.8 0 0 0 .36 2l.05.05-1.42 1.42-.05-.05a1.8 1.8 0 0 0-2-.36 1.8 1.8 0 0 0-1.1 1.65v.08h-2v-.08a1.8 1.8 0 0 0-1.1-1.65 1.8 1.8 0 0 0-2 .36l-.05.05-1.42-1.42.05-.05a1.8 1.8 0 0 0 .36-2A1.8 1.8 0 0 0 7.4 14H7.33v-2h.08a1.8 1.8 0 0 0 1.65-1.1 1.8 1.8 0 0 0-.36-2l-.05-.05 1.42-1.42.05.05a1.8 1.8 0 0 0 2 .36A1.8 1.8 0 0 0 13.2 6.2v-.08h2v.08a1.8 1.8 0 0 0 1.1 1.65 1.8 1.8 0 0 0 2-.36l.05-.05 1.42 1.42-.05.05a1.8 1.8 0 0 0-.36 2 1.8 1.8 0 0 0 1.65 1.1h.08v2h-.08A1.8 1.8 0 0 0 19.4 15z"/></svg>تنظیمات</div>
+  <div class="nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H4z"/><path d="m4 5 8 6 8-6"/><path d="M8 20h8"/></svg>پشتیبانی</div>
+</div></nav>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeQr()"><div class="modal-card"><button class="icon-btn" style="margin-right:auto" onclick="closeQr()">✕</button><h3 style="margin:12px 0 4px">QR Code اتصال</h3><p style="font-size:10px;color:#7d90b0">با دوربین یا برنامه کلاینت اسکن کنید</p><div id="qr-modal"></div><div style="font-size:9px;color:#91a4c4;word-break:break-all;direction:ltr">{vless_e}</div></div></div>
 
 <script>
-const SUB_URL = {sub_url!r};
-const VLESS_URL = {vless_url!r};
-const toggle = document.getElementById('themeToggle');
-if(localStorage.getItem('ahb_info_theme') === 'dark'){{ document.body.classList.add('dark'); toggle.checked=true; }}
-toggle.addEventListener('change',()=>{{ document.body.classList.toggle('dark',toggle.checked); localStorage.setItem('ahb_info_theme',toggle.checked?'dark':'light'); }});
-
-async function copyText(text){{
-  try{{ await navigator.clipboard.writeText(text); showCopied(); }}
-  catch(e){{
-    const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select();
-    try{{document.execCommand('copy')}}catch(_e){{}} ta.remove(); showCopied();
-  }}
-}}
-function showCopied(){{ const b=document.getElementById('copySub'); const old=b.innerHTML; b.innerHTML='✓ &nbsp; کپی شد'; setTimeout(()=>b.innerHTML=old,1500); }}
-function shareLink(){{
-  if(navigator.share) navigator.share({{title:'لینک اشتراک',text:'لینک اشتراک AHBPanel',url:SUB_URL}}).catch(()=>copyText(SUB_URL));
-  else copyText(SUB_URL);
-}}
-function openQr(){{
-  const modal=document.getElementById('qrModal'), box=document.getElementById('qrBox'); box.innerHTML='';
-  try{{ const qr=qrcode(0,'L'); qr.addData(VLESS_URL); qr.make(); box.innerHTML=qr.createImgTag(6,8); }}catch(e){{box.innerHTML='<div style="color:#101b55;padding:25px">خطا در ساخت QR</div>';}}
-  modal.classList.add('show');
-}}
-function closeQr(){{document.getElementById('qrModal').classList.remove('show')}}
+const vlessUrl = {vless_url!r};
+function copyText(id,btn){{const el=document.getElementById(id);if(!el)return;const text=el.textContent.trim();const done=()=>{{const old=btn.textContent;btn.textContent='✓ کپی شد';setTimeout(()=>btn.textContent=old,1400)}};if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(done).catch(()=>fallback(text,done));else fallback(text,done)}}
+function fallback(text,done){{const t=document.createElement('textarea');t.value=text;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{{document.execCommand('copy')}}catch(e){{}}document.body.removeChild(t);done()}}
+function makeQr(id){{const box=document.getElementById(id);if(!box)return;box.innerHTML='';try{{const qr=qrcode(0,'L');qr.addData(vlessUrl);qr.make();box.innerHTML=qr.createImgTag(5,8)}}catch(e){{box.textContent='QR unavailable'}}}}
+function openQr(){{document.getElementById('modal').classList.add('show');makeQr('qr-modal')}}
+function closeQr(){{document.getElementById('modal').classList.remove('show')}}
+makeQr('qr-main');
 </script>
 </body>
 </html>"""
-
     return HTMLResponse(info_html)
-
 # ============================================================
 # SUB GROUP API
+# ============================================================
 # ============================================================
 
 @app.post("/api/subs")
@@ -4804,7 +4723,7 @@ AHB Panel
 </h1>
 
 <div class="version">
-14.1.0
+14.2.0
 </div>
 
 <div class="text">
@@ -6208,7 +6127,7 @@ DASHBOARD_HTML = r"""
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>AHBPanel 14.1.0</title>
+<title>AHBPanel 14.2.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -6401,7 +6320,7 @@ tr:hover td{background:var(--hover)}
     <div class="sb-logo-icon">AHB</div>
     <div class="sb-logo-text">
       <div class="sb-logo-name">AHBPanel</div>
-      <div class="sb-logo-ver">v14.1.0</div>
+      <div class="sb-logo-ver">v14.2.0</div>
     </div>
   </div>
   <nav class="nav">
