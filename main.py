@@ -2136,6 +2136,56 @@ h1{
 
 /* AhbPanel 13.0.1 responsive system */
 html{scroll-behavior:smooth} body{overflow-x:hidden} button,input,select,textarea{touch-action:manipulation} .modal{overscroll-behavior:contain}
+
+/* ============================================================
+   AHB ACTION DASHBOARD — no sales / no shop UI
+   ============================================================ */
+.action-hero{position:relative;overflow:hidden;min-height:150px;padding:25px 26px;border-radius:24px;border:1px solid rgba(59,130,246,.28);background:
+  radial-gradient(circle at 82% 15%,rgba(139,92,246,.30),transparent 34%),
+  radial-gradient(circle at 15% 85%,rgba(14,165,233,.18),transparent 38%),
+  linear-gradient(135deg,rgba(7,22,49,.96),rgba(10,8,31,.94));box-shadow:0 18px 60px rgba(0,0,0,.35),0 0 45px rgba(59,130,246,.08);margin-bottom:16px}
+.action-hero:before{content:'';position:absolute;inset:-40%;background:repeating-linear-gradient(115deg,transparent 0 28px,rgba(96,165,250,.035) 29px 30px);transform:rotate(-4deg);pointer-events:none}
+.action-hero-content{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.action-hero h1{font-size:24px;font-weight:900;letter-spacing:-.04em;margin-bottom:7px}
+.action-hero p{color:var(--t2);font-size:12px;line-height:1.9}
+.hero-status{min-width:190px;padding:16px 18px;border-radius:18px;background:rgba(2,10,25,.58);border:1px solid rgba(59,130,246,.25);backdrop-filter:blur(15px)}
+.hero-status-top{display:flex;align-items:center;justify-content:space-between;color:var(--t3);font-size:10px;margin-bottom:10px}
+.status-live{display:inline-flex;align-items:center;gap:7px;color:#4ade80;font-weight:800;font-size:12px}
+.status-live i{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 14px #22c55e}
+.action-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+.action-metric{position:relative;overflow:hidden;padding:16px 17px;border-radius:18px;background:linear-gradient(145deg,rgba(13,28,55,.9),rgba(8,13,29,.88));border:1px solid rgba(96,165,250,.13);box-shadow:var(--shadow)}
+.action-metric:after{content:'';position:absolute;right:-25px;bottom:-35px;width:90px;height:90px;border-radius:50%;background:rgba(59,130,246,.08);filter:blur(3px)}
+.action-metric .am-label{color:var(--t3);font-size:10px;font-weight:700;margin-bottom:9px;display:flex;align-items:center;gap:7px}
+.action-metric .am-value{font-size:24px;font-weight:900;letter-spacing:-.04em}
+.action-metric .am-note{font-size:9px;color:var(--t3);margin-top:6px}
+.action-grid{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.8fr);gap:14px;margin-bottom:14px}
+.action-chart,.action-health{min-height:270px}
+.action-chart-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.action-chart-title{font-size:13px;font-weight:800}
+.chart-legend{font-size:10px;color:var(--t3)}
+.chart-area{height:195px;display:flex;align-items:flex-end;gap:8px;padding:15px 8px 0;border-radius:14px;background:linear-gradient(180deg,rgba(59,130,246,.04),rgba(139,92,246,.02));border:1px solid rgba(96,165,250,.07)}
+.chart-col{height:100%;flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px;min-width:0}
+.chart-bar{width:100%;max-width:30px;min-height:5px;border-radius:9px 9px 4px 4px;background:linear-gradient(180deg,#60a5fa,#7c3aed);box-shadow:0 0 18px rgba(99,102,241,.18);transition:height .5s ease}
+.chart-col span{font-size:8px;color:var(--t3);white-space:nowrap}
+.health-list{display:flex;flex-direction:column;gap:8px}
+.health-row{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;border-radius:12px;background:rgba(2,10,25,.45);border:1px solid rgba(96,165,250,.08);font-size:11px}
+.health-row .left{display:flex;align-items:center;gap:8px;color:var(--t2)}
+.health-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e}
+.health-dot.warn{background:#f59e0b;box-shadow:0 0 10px #f59e0b}.health-dot.off{background:#ef4444;box-shadow:0 0 10px #ef4444}
+.health-value{font-weight:800;color:var(--t1)}
+.action-bottom{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.75fr);gap:14px}
+.quick-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.quick-action{display:flex;align-items:center;gap:12px;padding:15px;border-radius:15px;border:1px solid rgba(96,165,250,.11);background:rgba(8,19,40,.76);color:inherit;cursor:pointer;text-align:right;font-family:inherit;transition:.2s}
+.quick-action:hover{transform:translateY(-2px);border-color:rgba(96,165,250,.35);box-shadow:0 12px 28px rgba(59,130,246,.10)}
+.qa-icon{width:40px;height:40px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(37,99,235,.25),rgba(124,58,237,.25));border:1px solid rgba(96,165,250,.16);color:#93c5fd;flex:0 0 auto}
+.qa-icon svg{width:19px;height:19px}.qa-title{font-size:11px;font-weight:800}.qa-desc{font-size:9px;color:var(--t3);margin-top:4px}
+.config-health{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.chip-stat{padding:14px;border-radius:14px;background:rgba(2,10,25,.45);border:1px solid rgba(96,165,250,.08)}
+.chip-stat b{display:block;font-size:20px;font-weight:900;margin-top:5px}.chip-stat span{font-size:9px;color:var(--t3)}
+.activity-list{display:flex;flex-direction:column;gap:8px;max-height:235px;overflow:auto}.activity-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05)}.activity-icon{width:28px;height:28px;border-radius:9px;background:rgba(59,130,246,.10);color:#60a5fa;display:grid;place-items:center;flex:0 0 auto}.activity-icon svg{width:14px;height:14px}.activity-text{min-width:0;flex:1}.activity-text b{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.activity-text span{font-size:9px;color:var(--t3)}
+@media(max-width:1100px){.action-metrics{grid-template-columns:repeat(2,1fr)}.action-grid,.action-bottom{grid-template-columns:1fr}}
+@media(max-width:640px){.action-hero-content{align-items:flex-start;flex-direction:column}.hero-status{width:100%;min-width:0}.action-metrics{grid-template-columns:1fr 1fr}.quick-grid{grid-template-columns:1fr}.action-hero h1{font-size:20px}.chart-area{gap:4px}}
+
 @media(max-width:900px){.container,.shell,.dashboard,.main,.content{max-width:100%!important;width:100%!important}.grid,.stats-grid,.cards-grid,.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.sidebar{z-index:1000}}
 @media(max-width:640px){body{padding:10px!important;font-size:14px}.grid,.stats-grid,.cards-grid,.form-grid{grid-template-columns:1fr!important}.card,.panel,.section,.modal{border-radius:18px!important}.modal{max-height:92vh;overflow:auto;padding:14px!important}.header,.topbar,.toolbar,.actions{flex-wrap:wrap!important}.header>* ,.topbar>*{max-width:100%}.btn,button{min-height:44px}.field input,.field select,.field textarea,input,select,textarea{min-height:44px;font-size:16px;max-width:100%}table{display:block;overflow-x:auto;white-space:nowrap}.link-row,.config-row{flex-direction:column!important;align-items:stretch!important}.brand-name{font-size:15px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
@@ -6370,10 +6420,6 @@ tr:hover td{background:var(--hover)}
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
       <span class="nav-label" data-i18n="nav_support">پشتیبانـی</span>
     </button>
-    <button class="nav-item" data-page="donate">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      <span class="nav-label" data-i18n="nav_donate">حمایت مالـی</span>
-    </button>
   </nav>
   <div class="sb-foot">
     <button type="button" id="themeBtn" onclick="toggleTheme()">
@@ -6398,30 +6444,81 @@ tr:hover td{background:var(--hover)}
 <main class="main" id="main">
 
 <section class="page on" id="page-dash">
-  <div class="page-head">
-    <div>
-      <div class="page-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-        <span data-i18n="nav_dash">داشبورد</span>
+  <div class="action-hero">
+    <div class="action-hero-content">
+      <div>
+        <div style="display:inline-flex;align-items:center;gap:8px;font-size:10px;color:#93c5fd;margin-bottom:9px"><span class="status-live"><i></i> سیستم فعال است</span><span style="opacity:.45">•</span><span>AHB PANEL v14.2.0</span></div>
+        <h1>به پنل مدیریت AHB خوش آمدید</h1>
+        <p>مدیریت حرفه‌ای کانفیگ‌ها، سابسکریپشن‌ها، سرورها و وضعیت شبکه — بدون بخش فروش.</p>
       </div>
-      <div class="page-sub" id="lastUpd" data-i18n="loading">در حال بارگـذاری...</div>
+      <div class="hero-status">
+        <div class="hero-status-top"><span>وضعیت سرویس</span><span id="dashUpdateTime">—</span></div>
+        <div class="status-live" style="font-size:15px"><i></i><span id="dashHealthText">آنلاین</span></div>
+        <div style="margin-top:9px;font-size:9px;color:var(--t3)" id="dashUptimeText">آپتایم: —</div>
+      </div>
     </div>
   </div>
-  <div class="metrics">
-    <div class="metric"><div class="metric-label" data-i18n="m_conns">اتصالات فعـال</div><div class="metric-val" id="mConns">—</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="m_traffic">ترافیک کـل</div><div class="metric-val" id="mTraffic">—</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="m_links">کانفیگ‌هـا</div><div class="metric-val" id="mLinks">—</div></div>
-    <div class="metric"><div class="metric-label" data-i18n="m_uptime">آپتایـم سرور</div><div class="metric-val" id="mUptime" style="font-size:17px">—</div></div>
+
+  <div class="action-metrics">
+    <div class="action-metric"><div class="am-label"><span style="color:#60a5fa">●</span> کانفیگ‌های فعال</div><div class="am-value" id="mLinks">—</div><div class="am-note" id="dashActiveNote">فعال</div></div>
+    <div class="action-metric"><div class="am-label"><span style="color:#22d3ee">●</span> اتصالات هم‌زمان</div><div class="am-value" id="mConns">—</div><div class="am-note">اتصال فعال فعلی</div></div>
+    <div class="action-metric"><div class="am-label"><span style="color:#a78bfa">●</span> مصرف ترافیک</div><div class="am-value" id="mTraffic">—</div><div class="am-note">مجموع مصرف ثبت‌شده</div></div>
+    <div class="action-metric"><div class="am-label"><span style="color:#34d399">●</span> آپتایم سرور</div><div class="am-value" id="mUptime" style="font-size:17px">—</div><div class="am-note">وضعیت اجرای پنل</div></div>
   </div>
-  <div class="g2">
-    <div class="card action-card" onclick="goPage('create')">
-      <div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14M5 12h14"/></svg><span data-i18n="quick_create">ساخت کانفیگ</span></div>
-      <p style="color:var(--t2);font-size:12px;line-height:1.6" data-i18n="quick_create_desc">ساخت دستی با محدودیت ترافیک، سرعت، تعداد و انقضا</p>
+
+  <div class="action-grid">
+    <div class="card action-chart">
+      <div class="action-chart-head"><div class="action-chart-title">مصرف و فعالیت اخیر</div><div class="chart-legend" id="lastUpd">در حال بارگذاری...</div></div>
+      <div class="chart-area" id="dashChartBars">
+        <div class="chart-col"><div class="chart-bar" style="height:35%"></div><span>—</span></div>
+        <div class="chart-col"><div class="chart-bar" style="height:50%"></div><span>—</span></div>
+        <div class="chart-col"><div class="chart-bar" style="height:42%"></div><span>—</span></div>
+        <div class="chart-col"><div class="chart-bar" style="height:68%"></div><span>—</span></div>
+        <div class="chart-col"><div class="chart-bar" style="height:55%"></div><span>—</span></div>
+        <div class="chart-col"><div class="chart-bar" style="height:76%"></div><span>—</span></div>
+        <div class="chart-col"><div class="chart-bar" style="height:62%"></div><span>—</span></div>
+      </div>
     </div>
-    <div class="card action-card purple" onclick="doAutoCreate()">
-      <div class="card-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2"/></svg><span data-i18n="auto_create">ساخت خودکار (پیشنهادی)</span></div>
-      <p style="color:var(--t2);font-size:12px;line-height:1.6" data-i18n="auto_create_desc">ساخت سریع با تنظیمات بهینه · لینک VLESS و ساب</p>
+    <div class="card action-health">
+      <div class="card-title">وضعیت سیستم</div>
+      <div class="health-list">
+        <div class="health-row"><div class="left"><i class="health-dot"></i> سرور اصلی</div><b class="health-value">فعال</b></div>
+        <div class="health-row"><div class="left"><i class="health-dot"></i> دیتای پنل</div><b class="health-value">متصل</b></div>
+        <div class="health-row"><div class="left"><i class="health-dot"></i> سرویس کانفیگ</div><b class="health-value" id="dashConfigState">فعال</b></div>
+        <div class="health-row"><div class="left"><i class="health-dot"></i> ربات تلگرام</div><b class="health-value">تنظیم‌شده</b></div>
+        <div class="health-row"><div class="left"><i class="health-dot"></i> فایل سیستم</div><b class="health-value">سالم</b></div>
+      </div>
     </div>
+  </div>
+
+  <div class="action-bottom">
+    <div class="card">
+      <div class="card-title">عملیات سریع</div>
+      <div class="quick-grid">
+        <button class="quick-action" onclick="goPage('create')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></span><span><b class="qa-title">ساخت کانفیگ</b><small class="qa-desc">ساخت دستی با حجم، زمان، سرعت و IP</small></span></button>
+        <button class="quick-action" onclick="goPage('configs')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span><b class="qa-title">مدیریت کانفیگ‌ها</b><small class="qa-desc">ویرایش، حذف، فعال‌سازی و لینک ساب</small></span></button>
+        <button class="quick-action" onclick="goPage('groups')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M6 3h12v18H6z"/></svg></span><span><b class="qa-title">مدیریت گروه‌ها</b><small class="qa-desc">دسته‌بندی و ساخت ساب‌های گروهی</small></span></button>
+        <button class="quick-action" onclick="goPage('stats')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 16l4-8 4 4 5-6"/></svg></span><span><b class="qa-title">آمار و ترافیک</b><small class="qa-desc">اتصالات، مصرف و وضعیت سرویس‌ها</small></span></button>
+        <button class="quick-action" onclick="goPage('telegram')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg></span><span><b class="qa-title">ربات تلگرام</b><small class="qa-desc">توکن، وب‌هوک و تنظیمات ربات</small></span></button>
+        <button class="quick-action" onclick="goPage('settings')"><span class="qa-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6v.2h-2.6V20a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H6v-2.6h.2a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.6V5h2.6v.2a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.6 1h.2v2.6h-.2a1.7 1.7 0 0 0-1.6 1Z"/></svg></span><span><b class="qa-title">تنظیمات و امنیت</b><small class="qa-desc">رمز، ادمین‌ها و پیکربندی پنل</small></span></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">وضعیت کانفیگ‌ها</div>
+      <div class="config-health">
+        <div class="chip-stat"><span>کل کانفیگ</span><b id="dashTotalConfigs">—</b></div>
+        <div class="chip-stat"><span>فعال</span><b id="dashActiveConfigs">—</b></div>
+        <div class="chip-stat"><span>منقضی</span><b id="dashExpiredConfigs">—</b></div>
+        <div class="chip-stat"><span>بدون محدودیت</span><b id="dashUnlimitedConfigs">—</b></div>
+      </div>
+      <div style="margin-top:15px;font-size:10px;color:var(--t3);line-height:1.8">تمام عملیات از همین پنل و بدون هیچ بخش فروش انجام می‌شود.</div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="card-title">آخرین فعالیت‌های کانفیگ</div>
+    <div class="activity-list" id="dashActivity"><div style="color:var(--t3);font-size:11px;padding:10px 0">در حال بارگذاری...</div></div>
   </div>
 </section>
 
@@ -6655,28 +6752,6 @@ tr:hover td{background:var(--hover)}
 </section>
 
 
-<section class="page" id="page-donate">
-  <div class="page-head" style="justify-content:center">
-    <div>
-      <div class="page-title" style="justify-content:center">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span data-i18n="nav_donate">حمایـت مالــــی</span>
-      </div>
-    </div>
-  </div>
-  <div style="display:flex;justify-content:center;width:100%">
-  <div class="card" style="max-width:560px;width:100%;line-height:2;font-size:14px;color:var(--t2);text-align:center">
-    <div style="font-size:16px;font-weight:800;color:var(--t1);margin-bottom:12px">💖 حمایت از پروژه (اختیاری)</div>
-    <p>اگه از پروژه خوشتون اومده یا براتون مفید بوده، می‌تونید با یه حمایت کوچیک مالی به ادامه‌ی توسعه و بهتر شدن پروژه کمک کنید. 🫶🏻✨</p>
-    <p style="margin-top:10px">💰 هر مقدار حمایتی، حتی کم، برای ما ارزشمنده و باعث میشه با انگیزه‌ی بیشتری ادامه بدیم! 🚀❤️‍🔥</p>
-    <p style="margin-top:10px">🔗 لینک حمایت مالی:</p>
-    <div style="margin-top:12px;display:flex;justify-content:center"><a href="https://t.me/ahb_panel" target="_blank" rel="noopener" class="btn btn-p" style="display:inline-flex;text-decoration:none">🙂 reymit.ir/moditor</a></div>
-    <p style="margin-top:16px;font-size:13px;color:var(--t3)">🙏🏻 ممنون از حمایت و همراهی‌تون عشقا! ❤️‍🔥🌹</p>
-    <p style="margin-top:8px;font-size:12px;color:var(--t3)">کاملاً اختیاری است و هیچ اجباری وجود ندارد.</p>
-  </div>
-  </div>
-</section>
-
 <section class="page" id="page-support">
   <div class="page-head"><div><div class="page-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/></svg><span data-i18n="nav_support">پشتیبانی</span></div></div></div>
   <div class="support-grid">
@@ -6837,8 +6912,30 @@ async function refreshAll(){
   if(!links)return;
   const arr=Array.isArray(links.links)?links.links:(Array.isArray(links)?links:[]);
   document.getElementById('mLinks').textContent=arr.length;
-  let active=0,used=0;
-  arr.forEach(l=>{if(l.active!==false)active++;used+=Number(l.used_bytes||0)});
+  let active=0,used=0,expired=0,unlimited=0;
+  arr.forEach(l=>{
+    if(l.active!==false)active++;
+    used+=Number(l.used_bytes||0);
+    if(l.expires_at){try{if(new Date(l.expires_at).getTime()<=Date.now()) expired++;}catch(e){}}
+    if(!(Number(l.limit_bytes)||0)) unlimited++;
+  });
+  const setText=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  setText('mTraffic',fmtB(used));
+  setText('dashTotalConfigs',arr.length);
+  setText('dashActiveConfigs',active);
+  setText('dashExpiredConfigs',expired);
+  setText('dashUnlimitedConfigs',unlimited);
+  setText('dashActiveNote',`${active} کانفیگ فعال از ${arr.length}`);
+  const act=document.getElementById('dashActivity');
+  if(act){
+    const recent=[...arr].sort((a,b)=>String(b.created_at||'').localeCompare(String(a.created_at||''))).slice(0,6);
+    act.innerHTML=recent.length?recent.map(l=>{
+      const name=esc(l.name||l.remark||l.uuid||'کانفیگ');
+      const proto=esc(l.protocol||l.proto||'VLESS');
+      const usedTxt=fmtB(Number(l.used_bytes||0));
+      return `<div class=\"activity-item\"><div class=\"activity-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M12 2 3 6v6c0 5 3.8 9.7 9 10 5.2-.3 9-5 9-10V6l-9-4Z\"/><path d=\"m9 12 2 2 4-4\"/></svg></div><div class=\"activity-text\"><b>${name}</b><span>${proto} · مصرف ${usedTxt}</span></div><span class=\"conn-badge ${l.active===false?'gray':'green'}\">${l.active===false?'خاموش':'فعال'}</span></div>`;
+    }).join(''):'<div style=\"color:var(--t3);font-size:11px;padding:10px 0\">فعالیتی ثبت نشده است.</div>';
+  }
   document.getElementById('mTraffic').textContent=fmtB(used);
   document.getElementById('sTraffic').textContent=fmtB(used);
   document.getElementById('sActive').textContent=active;
@@ -6854,6 +6951,8 @@ async function refreshAll(){
     if(h&&h.uptime){
       document.getElementById('mUptime').textContent=h.uptime;
       const su=document.getElementById('sUptime');if(su)su.textContent=h.uptime;
+      const du=document.getElementById('dashUptimeText');if(du)du.textContent=(lang==='fa'?'آپتایم: ':'Uptime: ')+h.uptime;
+      const dt=document.getElementById('dashUpdateTime');if(dt)dt.textContent=new Date().toLocaleTimeString(lang==='fa'?'fa-IR':'en-US');
     }
   }catch(e){}
     __allLinks=arr;
