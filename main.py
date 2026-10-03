@@ -1,5 +1,5 @@
 # ============================================================
-# ahbpanel 14.2.0
+# ahbpanel 14.3.0
 # Railway Ready
 # Created By Ahb
 # ============================================================
@@ -38,7 +38,7 @@ from fastapi.middleware.cors import CORSMiddleware
 # ============================================================
 
 APP_NAME = "ahbpanel"
-APP_VERSION = "14.2.0"
+APP_VERSION = "14.3.0"
 
 SUPPORT_USERNAME = "@ahb_panel"
 SUPPORT_URL = "https://t.me/ahbpanel"
@@ -2181,7 +2181,7 @@ AHB Panel
 </div>
 
 <div class="version">
-14.2.0
+14.3.0
 </div>
 </div>
 
@@ -2229,7 +2229,7 @@ class="btn secondary"
 <div class="footer">
 
 <span>
-AHB Panel · 14.2.0
+AHB Panel · 14.3.0
 </span>
 
 <a
@@ -4745,7 +4745,7 @@ AHB Panel
 </h1>
 
 <div class="version">
-14.2.0
+14.3.0
 </div>
 
 <div class="text">
@@ -6149,7 +6149,7 @@ DASHBOARD_HTML = r"""
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>AHBPanel 14.2.0</title>
+<title>AHBPanel 14.3.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
@@ -6655,7 +6655,7 @@ html.light .toast{background:rgba(255,255,255,.88)}
     <div class="sb-logo-icon">AHB</div>
     <div class="sb-logo-text">
       <div class="sb-logo-name">AHBPanel</div>
-      <div class="sb-logo-ver">v14.2.0</div>
+      <div class="sb-logo-ver">v14.3.0</div>
     </div>
   </div>
   <nav class="nav">
